@@ -7,28 +7,82 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		48170DA026A7957300005954 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48170D9F26A7957300005954 /* main.m */; };
+		48AAADAD26AE1C96005AB04F /* UDSDMainAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADAC26AE1C96005AB04F /* UDSDMainAppApp.swift */; };
+		48AAADAF26AE1C96005AB04F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADAE26AE1C96005AB04F /* ContentView.swift */; };
+		48AAADB126AE1C97005AB04F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48AAADB026AE1C97005AB04F /* Assets.xcassets */; };
+		48AAADB426AE1C97005AB04F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48AAADB326AE1C97005AB04F /* Preview Assets.xcassets */; };
+		48AAADCB26AE1CF8005AB04F /* UDSDHelperAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADCA26AE1CF8005AB04F /* UDSDHelperAppApp.swift */; };
+		48AAADCD26AE1CF8005AB04F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADCC26AE1CF8005AB04F /* ContentView.swift */; };
+		48AAADCF26AE1CF9005AB04F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48AAADCE26AE1CF9005AB04F /* Assets.xcassets */; };
+		48AAADD226AE1CF9005AB04F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48AAADD126AE1CF9005AB04F /* Preview Assets.xcassets */; };
+		48AAADDE26AE1DE1005AB04F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADDD26AE1DE1005AB04F /* AppDelegate.m */; };
+		48AAADE026AE1DE1005AB04F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48AAADDF26AE1DE1005AB04F /* Assets.xcassets */; };
+		48AAADE326AE1DE1005AB04F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48AAADE126AE1DE1005AB04F /* MainMenu.xib */; };
+		48AAADE526AE1DE1005AB04F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADE426AE1DE1005AB04F /* main.m */; };
+		48AAADF126AE1E0A005AB04F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADF026AE1E0A005AB04F /* AppDelegate.m */; };
+		48AAADF326AE1E0B005AB04F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48AAADF226AE1E0B005AB04F /* Assets.xcassets */; };
+		48AAADF626AE1E0B005AB04F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48AAADF426AE1E0B005AB04F /* MainMenu.xib */; };
+		48AAADF826AE1E0B005AB04F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADF726AE1E0B005AB04F /* main.m */; };
+		48AAADFC26AE49B2005AB04F /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAD9426ADBD0B005AB04F /* Client.m */; };
+		48AAADFD26AE49B3005AB04F /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAD9426ADBD0B005AB04F /* Client.m */; };
+		48AAADFE26AE49B6005AB04F /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAD9726ADBD82005AB04F /* Server.m */; };
+		48AAADFF26AE49B7005AB04F /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAD9726ADBD82005AB04F /* Server.m */; };
+		48AAAE0026AE49BA005AB04F /* Socket.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAD9626ADBD82005AB04F /* Socket.m */; };
+		48AAAE0126AE49BB005AB04F /* Socket.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAD9626ADBD82005AB04F /* Socket.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		48170D9A26A7957300005954 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		48170D9C26A7957300005954 /* UnixDomainSocketsDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnixDomainSocketsDemo; sourceTree = BUILT_PRODUCTS_DIR; };
-		48170D9F26A7957300005954 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		48AAAD9026ADBC10005AB04F /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		48AAAD9426ADBD0B005AB04F /* Client.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Client.m; sourceTree = "<group>"; };
+		48AAAD9626ADBD82005AB04F /* Socket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Socket.m; sourceTree = "<group>"; };
+		48AAAD9726ADBD82005AB04F /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Server.m; sourceTree = "<group>"; };
+		48AAADAA26AE1C96005AB04F /* UDSDMainApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDSDMainApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		48AAADAC26AE1C96005AB04F /* UDSDMainAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDSDMainAppApp.swift; sourceTree = "<group>"; };
+		48AAADAE26AE1C96005AB04F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		48AAADB026AE1C97005AB04F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		48AAADB326AE1C97005AB04F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		48AAADC826AE1CF8005AB04F /* UDSDHelperApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDSDHelperApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		48AAADCA26AE1CF8005AB04F /* UDSDHelperAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDSDHelperAppApp.swift; sourceTree = "<group>"; };
+		48AAADCC26AE1CF8005AB04F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		48AAADCE26AE1CF9005AB04F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		48AAADD126AE1CF9005AB04F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		48AAADDA26AE1DE1005AB04F /* UDSDMainAppObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDSDMainAppObjC.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		48AAADDC26AE1DE1005AB04F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		48AAADDD26AE1DE1005AB04F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		48AAADDF26AE1DE1005AB04F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		48AAADE226AE1DE1005AB04F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		48AAADE426AE1DE1005AB04F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		48AAADED26AE1E0A005AB04F /* UDSDHelperAppObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDSDHelperAppObjC.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		48AAADEF26AE1E0A005AB04F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		48AAADF026AE1E0A005AB04F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		48AAADF226AE1E0B005AB04F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		48AAADF526AE1E0B005AB04F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		48AAADF726AE1E0B005AB04F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		48170D9926A7957300005954 /* Frameworks */ = {
+		48AAADA726AE1C96005AB04F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48AAADC526AE1CF8005AB04F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48AAADD726AE1DE1005AB04F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48AAADEA26AE1E0A005AB04F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,6 +96,10 @@
 			isa = PBXGroup;
 			children = (
 				48170D9E26A7957300005954 /* UnixDomainSocketsDemo */,
+				48AAADAB26AE1C96005AB04F /* UDSDMainApp */,
+				48AAADC926AE1CF8005AB04F /* UDSDHelperApp */,
+				48AAADDB26AE1DE1005AB04F /* UDSDMainAppObjC */,
+				48AAADEE26AE1E0A005AB04F /* UDSDHelperAppObjC */,
 				48170D9D26A7957300005954 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,7 +107,10 @@
 		48170D9D26A7957300005954 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				48170D9C26A7957300005954 /* UnixDomainSocketsDemo */,
+				48AAADAA26AE1C96005AB04F /* UDSDMainApp.app */,
+				48AAADC826AE1CF8005AB04F /* UDSDHelperApp.app */,
+				48AAADDA26AE1DE1005AB04F /* UDSDMainAppObjC.app */,
+				48AAADED26AE1E0A005AB04F /* UDSDHelperAppObjC.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -57,30 +118,146 @@
 		48170D9E26A7957300005954 /* UnixDomainSocketsDemo */ = {
 			isa = PBXGroup;
 			children = (
-				48170D9F26A7957300005954 /* main.m */,
+				48AAAD9026ADBC10005AB04F /* Common.h */,
+				48AAAD9426ADBD0B005AB04F /* Client.m */,
+				48AAAD9726ADBD82005AB04F /* Server.m */,
+				48AAAD9626ADBD82005AB04F /* Socket.m */,
 			);
 			path = UnixDomainSocketsDemo;
+			sourceTree = "<group>";
+		};
+		48AAADAB26AE1C96005AB04F /* UDSDMainApp */ = {
+			isa = PBXGroup;
+			children = (
+				48AAADAC26AE1C96005AB04F /* UDSDMainAppApp.swift */,
+				48AAADAE26AE1C96005AB04F /* ContentView.swift */,
+				48AAADB026AE1C97005AB04F /* Assets.xcassets */,
+				48AAADB226AE1C97005AB04F /* Preview Content */,
+			);
+			path = UDSDMainApp;
+			sourceTree = "<group>";
+		};
+		48AAADB226AE1C97005AB04F /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				48AAADB326AE1C97005AB04F /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		48AAADC926AE1CF8005AB04F /* UDSDHelperApp */ = {
+			isa = PBXGroup;
+			children = (
+				48AAADCA26AE1CF8005AB04F /* UDSDHelperAppApp.swift */,
+				48AAADCC26AE1CF8005AB04F /* ContentView.swift */,
+				48AAADCE26AE1CF9005AB04F /* Assets.xcassets */,
+				48AAADD026AE1CF9005AB04F /* Preview Content */,
+			);
+			path = UDSDHelperApp;
+			sourceTree = "<group>";
+		};
+		48AAADD026AE1CF9005AB04F /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				48AAADD126AE1CF9005AB04F /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		48AAADDB26AE1DE1005AB04F /* UDSDMainAppObjC */ = {
+			isa = PBXGroup;
+			children = (
+				48AAADDC26AE1DE1005AB04F /* AppDelegate.h */,
+				48AAADDD26AE1DE1005AB04F /* AppDelegate.m */,
+				48AAADDF26AE1DE1005AB04F /* Assets.xcassets */,
+				48AAADE126AE1DE1005AB04F /* MainMenu.xib */,
+				48AAADE426AE1DE1005AB04F /* main.m */,
+			);
+			path = UDSDMainAppObjC;
+			sourceTree = "<group>";
+		};
+		48AAADEE26AE1E0A005AB04F /* UDSDHelperAppObjC */ = {
+			isa = PBXGroup;
+			children = (
+				48AAADEF26AE1E0A005AB04F /* AppDelegate.h */,
+				48AAADF026AE1E0A005AB04F /* AppDelegate.m */,
+				48AAADF226AE1E0B005AB04F /* Assets.xcassets */,
+				48AAADF426AE1E0B005AB04F /* MainMenu.xib */,
+				48AAADF726AE1E0B005AB04F /* main.m */,
+			);
+			path = UDSDHelperAppObjC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		48170D9B26A7957300005954 /* UnixDomainSocketsDemo */ = {
+		48AAADA926AE1C96005AB04F /* UDSDMainApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 48170DA326A7957300005954 /* Build configuration list for PBXNativeTarget "UnixDomainSocketsDemo" */;
+			buildConfigurationList = 48AAADB526AE1C97005AB04F /* Build configuration list for PBXNativeTarget "UDSDMainApp" */;
 			buildPhases = (
-				48170D9826A7957300005954 /* Sources */,
-				48170D9926A7957300005954 /* Frameworks */,
-				48170D9A26A7957300005954 /* CopyFiles */,
+				48AAADA626AE1C96005AB04F /* Sources */,
+				48AAADA726AE1C96005AB04F /* Frameworks */,
+				48AAADA826AE1C96005AB04F /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = UnixDomainSocketsDemo;
-			productName = UnixDomainSocketsDemo;
-			productReference = 48170D9C26A7957300005954 /* UnixDomainSocketsDemo */;
-			productType = "com.apple.product-type.tool";
+			name = UDSDMainApp;
+			productName = UDSDMainApp;
+			productReference = 48AAADAA26AE1C96005AB04F /* UDSDMainApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		48AAADC726AE1CF8005AB04F /* UDSDHelperApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48AAADD326AE1CF9005AB04F /* Build configuration list for PBXNativeTarget "UDSDHelperApp" */;
+			buildPhases = (
+				48AAADC426AE1CF8005AB04F /* Sources */,
+				48AAADC526AE1CF8005AB04F /* Frameworks */,
+				48AAADC626AE1CF8005AB04F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UDSDHelperApp;
+			productName = UDSDHelperApp;
+			productReference = 48AAADC826AE1CF8005AB04F /* UDSDHelperApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		48AAADD926AE1DE1005AB04F /* UDSDMainAppObjC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48AAADE626AE1DE1005AB04F /* Build configuration list for PBXNativeTarget "UDSDMainAppObjC" */;
+			buildPhases = (
+				48AAADD626AE1DE1005AB04F /* Sources */,
+				48AAADD726AE1DE1005AB04F /* Frameworks */,
+				48AAADD826AE1DE1005AB04F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UDSDMainAppObjC;
+			productName = UDSDMainAppObjC;
+			productReference = 48AAADDA26AE1DE1005AB04F /* UDSDMainAppObjC.app */;
+			productType = "com.apple.product-type.application";
+		};
+		48AAADEC26AE1E0A005AB04F /* UDSDHelperAppObjC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48AAADF926AE1E0B005AB04F /* Build configuration list for PBXNativeTarget "UDSDHelperAppObjC" */;
+			buildPhases = (
+				48AAADE926AE1E0A005AB04F /* Sources */,
+				48AAADEA26AE1E0A005AB04F /* Frameworks */,
+				48AAADEB26AE1E0A005AB04F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UDSDHelperAppObjC;
+			productName = UDSDHelperAppObjC;
+			productReference = 48AAADED26AE1E0A005AB04F /* UDSDHelperAppObjC.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -89,9 +266,19 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
-					48170D9B26A7957300005954 = {
+					48AAADA926AE1C96005AB04F = {
+						CreatedOnToolsVersion = 13.0;
+					};
+					48AAADC726AE1CF8005AB04F = {
+						CreatedOnToolsVersion = 13.0;
+					};
+					48AAADD926AE1DE1005AB04F = {
+						CreatedOnToolsVersion = 13.0;
+					};
+					48AAADEC26AE1E0A005AB04F = {
 						CreatedOnToolsVersion = 13.0;
 					};
 				};
@@ -109,21 +296,116 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				48170D9B26A7957300005954 /* UnixDomainSocketsDemo */,
+				48AAADA926AE1C96005AB04F /* UDSDMainApp */,
+				48AAADC726AE1CF8005AB04F /* UDSDHelperApp */,
+				48AAADD926AE1DE1005AB04F /* UDSDMainAppObjC */,
+				48AAADEC26AE1E0A005AB04F /* UDSDHelperAppObjC */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		48AAADA826AE1C96005AB04F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48AAADB426AE1C97005AB04F /* Preview Assets.xcassets in Resources */,
+				48AAADB126AE1C97005AB04F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48AAADC626AE1CF8005AB04F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48AAADD226AE1CF9005AB04F /* Preview Assets.xcassets in Resources */,
+				48AAADCF26AE1CF9005AB04F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48AAADD826AE1DE1005AB04F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48AAADE026AE1DE1005AB04F /* Assets.xcassets in Resources */,
+				48AAADE326AE1DE1005AB04F /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48AAADEB26AE1E0A005AB04F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48AAADF326AE1E0B005AB04F /* Assets.xcassets in Resources */,
+				48AAADF626AE1E0B005AB04F /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		48170D9826A7957300005954 /* Sources */ = {
+		48AAADA626AE1C96005AB04F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48170DA026A7957300005954 /* main.m in Sources */,
+				48AAADAF26AE1C96005AB04F /* ContentView.swift in Sources */,
+				48AAADAD26AE1C96005AB04F /* UDSDMainAppApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48AAADC426AE1CF8005AB04F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48AAADCD26AE1CF8005AB04F /* ContentView.swift in Sources */,
+				48AAADCB26AE1CF8005AB04F /* UDSDHelperAppApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48AAADD626AE1DE1005AB04F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48AAAE0026AE49BA005AB04F /* Socket.m in Sources */,
+				48AAADE526AE1DE1005AB04F /* main.m in Sources */,
+				48AAADDE26AE1DE1005AB04F /* AppDelegate.m in Sources */,
+				48AAADFE26AE49B6005AB04F /* Server.m in Sources */,
+				48AAADFC26AE49B2005AB04F /* Client.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48AAADE926AE1E0A005AB04F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48AAAE0126AE49BB005AB04F /* Socket.m in Sources */,
+				48AAADF826AE1E0B005AB04F /* main.m in Sources */,
+				48AAADF126AE1E0A005AB04F /* AppDelegate.m in Sources */,
+				48AAADFF26AE49B7005AB04F /* Server.m in Sources */,
+				48AAADFD26AE49B3005AB04F /* Client.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		48AAADE126AE1DE1005AB04F /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48AAADE226AE1DE1005AB04F /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		48AAADF426AE1E0B005AB04F /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48AAADF526AE1E0B005AB04F /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		48170DA126A7957300005954 /* Debug */ = {
@@ -237,23 +519,227 @@
 			};
 			name = Release;
 		};
-		48170DA426A7957300005954 /* Debug */ = {
+		48AAADB626AE1C97005AB04F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"UDSDMainApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 4MAMECY9VS;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sheepsystems.UDSDMainApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		48170DA526A7957300005954 /* Release */ = {
+		48AAADB726AE1C97005AB04F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"UDSDMainApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 4MAMECY9VS;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sheepsystems.UDSDMainApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		48AAADD426AE1CF9005AB04F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"UDSDHelperApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 4MAMECY9VS;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sheepsystems.UDSDHelperApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		48AAADD526AE1CF9005AB04F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"UDSDHelperApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 4MAMECY9VS;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sheepsystems.UDSDHelperApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		48AAADE726AE1DE1005AB04F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4MAMECY9VS;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sheepsystems.UDSDMainAppObjC;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		48AAADE826AE1DE1005AB04F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4MAMECY9VS;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sheepsystems.UDSDMainAppObjC;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+		48AAADFA26AE1E0B005AB04F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4MAMECY9VS;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sheepsystems.UDSDHelperAppObjC;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		48AAADFB26AE1E0B005AB04F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4MAMECY9VS;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sheepsystems.UDSDHelperAppObjC;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;
 		};
@@ -269,11 +755,38 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		48170DA326A7957300005954 /* Build configuration list for PBXNativeTarget "UnixDomainSocketsDemo" */ = {
+		48AAADB526AE1C97005AB04F /* Build configuration list for PBXNativeTarget "UDSDMainApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				48170DA426A7957300005954 /* Debug */,
-				48170DA526A7957300005954 /* Release */,
+				48AAADB626AE1C97005AB04F /* Debug */,
+				48AAADB726AE1C97005AB04F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48AAADD326AE1CF9005AB04F /* Build configuration list for PBXNativeTarget "UDSDHelperApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48AAADD426AE1CF9005AB04F /* Debug */,
+				48AAADD526AE1CF9005AB04F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48AAADE626AE1DE1005AB04F /* Build configuration list for PBXNativeTarget "UDSDMainAppObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48AAADE726AE1DE1005AB04F /* Debug */,
+				48AAADE826AE1DE1005AB04F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48AAADF926AE1E0B005AB04F /* Build configuration list for PBXNativeTarget "UDSDHelperAppObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48AAADFA26AE1E0B005AB04F /* Debug */,
+				48AAADFB26AE1E0B005AB04F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
