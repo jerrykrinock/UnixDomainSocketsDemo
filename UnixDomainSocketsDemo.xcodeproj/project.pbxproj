@@ -29,7 +29,30 @@
 		48AAADFF26AE49B7005AB04F /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAD9726ADBD82005AB04F /* Server.m */; };
 		48AAAE0026AE49BA005AB04F /* Socket.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAD9626ADBD82005AB04F /* Socket.m */; };
 		48AAAE0126AE49BB005AB04F /* Socket.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAD9626ADBD82005AB04F /* Socket.m */; };
+		48AAAE0326AE6961005AB04F /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAE0226AE6961005AB04F /* Socket.swift */; };
+		48AAAE0426AE6961005AB04F /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAE0226AE6961005AB04F /* Socket.swift */; };
+		48AAAE0626AE7181005AB04F /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAE0526AE7181005AB04F /* Client.swift */; };
+		48AAAE0726AE7181005AB04F /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAE0526AE7181005AB04F /* Client.swift */; };
+		48AAAE0926AE718A005AB04F /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAE0826AE7189005AB04F /* Server.swift */; };
+		48AAAE0A26AE718A005AB04F /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAE0826AE7189005AB04F /* Server.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4814FB8426B7B9E100376C37 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 48170D9426A7957300005954 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 48AAADC726AE1CF8005AB04F;
+			remoteInfo = UDSDHelperApp;
+		};
+		4814FB8626B7B9FA00376C37 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 48170D9426A7957300005954 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 48AAADEC26AE1E0A005AB04F;
+			remoteInfo = UDSDHelperAppObjC;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		48AAAD9026ADBC10005AB04F /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
@@ -58,6 +81,9 @@
 		48AAADF226AE1E0B005AB04F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48AAADF526AE1E0B005AB04F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		48AAADF726AE1E0B005AB04F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		48AAAE0226AE6961005AB04F /* Socket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = "<group>"; };
+		48AAAE0526AE7181005AB04F /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		48AAAE0826AE7189005AB04F /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +148,9 @@
 				48AAAD9426ADBD0B005AB04F /* Client.m */,
 				48AAAD9726ADBD82005AB04F /* Server.m */,
 				48AAAD9626ADBD82005AB04F /* Socket.m */,
+				48AAAE0226AE6961005AB04F /* Socket.swift */,
+				48AAAE0526AE7181005AB04F /* Client.swift */,
+				48AAAE0826AE7189005AB04F /* Server.swift */,
 			);
 			path = UnixDomainSocketsDemo;
 			sourceTree = "<group>";
@@ -202,6 +231,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4814FB8526B7B9E100376C37 /* PBXTargetDependency */,
 			);
 			name = UDSDMainApp;
 			productName = UDSDMainApp;
@@ -236,6 +266,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4814FB8726B7B9FA00376C37 /* PBXTargetDependency */,
 			);
 			name = UDSDMainAppObjC;
 			productName = UDSDMainAppObjC;
@@ -348,8 +379,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48AAAE0926AE718A005AB04F /* Server.swift in Sources */,
 				48AAADAF26AE1C96005AB04F /* ContentView.swift in Sources */,
 				48AAADAD26AE1C96005AB04F /* UDSDMainAppApp.swift in Sources */,
+				48AAAE0626AE7181005AB04F /* Client.swift in Sources */,
+				48AAAE0326AE6961005AB04F /* Socket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,8 +391,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48AAAE0A26AE718A005AB04F /* Server.swift in Sources */,
 				48AAADCD26AE1CF8005AB04F /* ContentView.swift in Sources */,
 				48AAADCB26AE1CF8005AB04F /* UDSDHelperAppApp.swift in Sources */,
+				48AAAE0726AE7181005AB04F /* Client.swift in Sources */,
+				48AAAE0426AE6961005AB04F /* Socket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +424,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4814FB8526B7B9E100376C37 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 48AAADC726AE1CF8005AB04F /* UDSDHelperApp */;
+			targetProxy = 4814FB8426B7B9E100376C37 /* PBXContainerItemProxy */;
+		};
+		4814FB8726B7B9FA00376C37 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 48AAADEC26AE1E0A005AB04F /* UDSDHelperAppObjC */;
+			targetProxy = 4814FB8626B7B9FA00376C37 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		48AAADE126AE1DE1005AB04F /* MainMenu.xib */ = {
