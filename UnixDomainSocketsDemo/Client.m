@@ -51,9 +51,9 @@ static NSTimeInterval const kCommSocketClientTimeout = 5.0;
 - (void) messageReceived:(NSData *)data {
 
     NSError* error = nil;
-    id msg = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSDictionary class]
-                                               fromData:data
-                                                  error:&error];
+    id msg = [NSJSONSerialization JSONObjectWithData:data
+                                             options:0
+                                               error:&error];
 
     if ( [msg isKindOfClass:[NSDictionary class]] ) {
 
@@ -79,9 +79,9 @@ static NSTimeInterval const kCommSocketClientTimeout = 5.0;
                  error_p:(NSError**)error_p {
     BOOL ok;
     NSError* error = nil;
-    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:aDict
-                                         requiringSecureCoding:YES
-                                                         error:&error];
+    NSData* data = [NSJSONSerialization dataWithJSONObject:aDict
+                                                   options:0
+                                                     error:&error];
     ok = ((data != nil) && (error == nil));
     if (ok) {
         ok = [self sendMessageData:data];
