@@ -1,6 +1,7 @@
 import Foundation
 
-class CommSocket : ObservableObject {
+/* This is the superclass for UDClient and UDServer. */
+class UDSocket : ObservableObject {
     var sockRefValid = false
     var sockConnected = false
     var sockRef: CFSocket?
@@ -184,14 +185,4 @@ class CommSocket : ObservableObject {
         url = url.appendingPathComponent("UDSDService.socket")! as NSURL
         return url
     }
-}
-
-protocol CommSocketServerDelegate: AnyObject {
-    func handleSocketServerStopped(_ server: CommSocketServer?)
-    func handleSocketServerMsgDict(_ aDict: [AnyHashable : Any]?, from client: CommSocketClient?, error: Error?)
-}
-
-protocol CommSocketClientDelegate: AnyObject {
-    func handleSocketClientDisconnect(_ client: CommSocketClient?)
-    func handleSocketClientMsgDict(_ aDict: [AnyHashable : Any]?, client: CommSocketClient?, error: Error?)
 }

@@ -2,11 +2,11 @@ import SwiftUI
 
 @main
 struct UDSDMainApp: App {
-    var client: CommSocketClient? = nil
+    var client: UDClient? = nil
     var consumer: Consumer? = nil
 
     init() {
-        self.client = CommSocketClient(socketUrl: CommSocket.serviceUrl())
+        self.client = UDClient(socketUrl: UDSocket.serviceUrl())
         self.consumer = Consumer()
         if let consumer = consumer {
             self.client?.delegate = consumer

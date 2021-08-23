@@ -1,4 +1,4 @@
-struct DemoError: Error {
+struct UDSDError: Error {
     enum Kind {
         case couldNotLaunchHelper
     }

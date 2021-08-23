@@ -1,7 +1,5 @@
 import Foundation
 
-// MARK: Server Callback:
-
 func SocketServerCallback(
     _ sock: CFSocket?,
     _ type: CFSocketCallBackType,
@@ -10,7 +8,7 @@ func SocketServerCallback(
     _ info: UnsafeMutableRawPointer?) {
     
     if let info = info {
-        let server = unsafeBitCast(info, to:CommSocketServer.self)
+        let server = unsafeBitCast(info, to:UDServer.self)
         Logger.shared.log("Server received socket callback")
         
         if type == .acceptCallBack {
@@ -28,7 +26,12 @@ func SocketServerCallback(
 }
 
 
-class CommSocketServer : CommSocket, CommSocketClientDelegate {
+protocol UDServerDelegate: AnyObject {
+    func handleSocketServerStopped(_ server: UDServer?)
+    func handleSocketServerMsgDict(_ aDict: [AnyHashable : Any]?, from client: UDClient?, error: Error?)
+}
+
+class UDServer : UDSocket, UDClientDelegate {
     enum Status {
         case unknown
         case running
@@ -37,12 +40,9 @@ class CommSocketServer : CommSocket, CommSocketClientDelegate {
         case stopping
     }
     
-    var sockStatus: CommSocketServer.Status = .unknown
-    var sockClients = Set<CommSocketClient>() // empty set
-    var delegate: CommSocketServerDelegate? = nil
-
-
-    // MARK: Helper Methods:
+    var sockStatus: UDServer.Status = .unknown
+    var sockClients = Set<UDClient>() // empty set
+    var delegate: UDServerDelegate? = nil
 
     func socketServerCreate() throws -> Void {
         if (self.sockRef != nil) {
@@ -122,16 +122,13 @@ class CommSocketServer : CommSocket, CommSocketClientDelegate {
         }
     }
 
-
-    // MARK: Connected Clients:
-    
     func disconnectClients() -> Void {
         self.sockClients.forEach { client in
             self.disconnectClient(client)
         }
     }
     
-    func disconnectClient(_ client: CommSocketClient?) -> Void {
+    func disconnectClient(_ client: UDClient?) -> Void {
         objc_sync_enter(self) // Someday, use Swift 5.5 concurrency instead
         if let client = client {
             self.sockClients.remove(client)
@@ -142,7 +139,7 @@ class CommSocketServer : CommSocket, CommSocketClientDelegate {
     
     func addConnectedClient(handle: CFSocketNativeHandle) -> Void {
         objc_sync_enter(self) // Someday, use Swift 5.5 concurrency instead
-        if let client = CommSocketClient(socket: handle) {
+        if let client = UDClient(socket: handle) {
             client.delegate = self
 
             if ( client.isSockConnected() ) {
@@ -153,15 +150,13 @@ class CommSocketServer : CommSocket, CommSocketClientDelegate {
         objc_sync_exit(self) // Someday, use Swift 5.5 concurrency instead
     }
     
-    // MARK: Connected Client Protocols:
-
-    func handleSocketClientDisconnect(_ client: CommSocketClient?) {
+    func handleSocketClientDisconnect(_ client: UDClient?) {
         self.disconnectClient(client)
     }
     
     func handleSocketClientMsgDict(
         _ aDict: [AnyHashable : Any]?,
-        client: CommSocketClient?,
+        client: UDClient?,
         error: Error?
     ) {
         self.delegate?.handleSocketServerMsgDict(
@@ -171,8 +166,6 @@ class CommSocketServer : CommSocket, CommSocketClientDelegate {
         )
     }
 
-    // MARK:  Start / Stop Server:
-    
     func start() -> Void {
         Logger.shared.log("Attempting to start server")
         if (self.sockStatus == .running) {
@@ -231,20 +224,16 @@ class CommSocketServer : CommSocket, CommSocketClientDelegate {
         self.sockStatus = .stopped
     }
 
-     // MARK: Server Validation:
-    
     func isSockConnected() -> Bool {
         return ((self.sockStatus == .running) && self.isSockRefValid())
     }
-
-    // MARK: Initialization:
 
     init?(socketUrl: NSURL) {
         super.init()
         
         self.sockUrl = socketUrl
         self.sockStatus = .stopped
-        self.sockClients = Set<CommSocketClient>() // empty set
+        self.sockClients = Set<UDClient>() // empty set
     }
     
     deinit {

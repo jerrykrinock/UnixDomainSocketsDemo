@@ -17,7 +17,7 @@ struct OtherApper {
                           thenDo: thenDo)
             }
         } else {
-            let error = DemoError(kind: .couldNotLaunchHelper)
+            let error = UDSDError(kind: .couldNotLaunchHelper)
             thenDo(nil, error)
         }
     }

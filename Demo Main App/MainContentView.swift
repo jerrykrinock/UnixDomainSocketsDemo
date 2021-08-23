@@ -2,7 +2,7 @@ import SwiftUI
 
 
 struct MainAppContentView: View {
-    var client: CommSocketClient
+    var client: UDClient
     @ObservedObject var logger: Logger = Logger.shared
 
     var body: some View {

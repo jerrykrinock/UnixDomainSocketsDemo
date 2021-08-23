@@ -1,13 +1,13 @@
 import Foundation
 
-class Consumer : CommSocketClientDelegate {
-    func handleSocketClientDisconnect(_ client: CommSocketClient?) {
+class Consumer : UDClientDelegate {
+    func handleSocketClientDisconnect(_ client: UDClient?) {
         Logger.shared.log("Whoops client stopped")
     }
     
     func handleSocketClientMsgDict(
         _ aDict: [AnyHashable : Any]?,
-        client: CommSocketClient?,
+        client: UDClient?,
         error: Error?) {
         if let dict = aDict {
             Logger.shared.log("Got answer: \(dict)")

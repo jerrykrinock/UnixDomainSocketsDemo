@@ -1,13 +1,5 @@
 import Foundation
 
-/* Brian's code:
- let callback: copyfile_callback_t = copyfileCallback
- var operation = self
- copyfile_state_set(copyFileState, UInt32(COPYFILE_STATE_STATUS_CB), unsafeBitCast(callback, to: UnsafeRawPointer.self))
- */
-
-// MARK: Client Callback:
-
 func SocketClientCallback(
     _ sock: CFSocket?,
     _ type: CFSocketCallBackType,
@@ -17,7 +9,7 @@ func SocketClientCallback(
 
     Logger.shared.log("Client has received callback")
     if let info = info {
-        let client = unsafeBitCast(info, to:CommSocketClient.self)
+        let client = unsafeBitCast(info, to:UDClient.self)
         
         /* From documentation of CFClientCallback:
          `data` is data appropriate for the callback type.
@@ -49,7 +41,12 @@ func SocketClientCallback(
     }
 }
 
-class CommSocketClient : CommSocket, Hashable {
+protocol UDClientDelegate: AnyObject {
+    func handleSocketClientDisconnect(_ client: UDClient?)
+    func handleSocketClientMsgDict(_ aDict: [AnyHashable : Any]?, client: UDClient?, error: Error?)
+}
+
+class UDClient : UDSocket, Hashable {
     enum Status {
         case unknown
         case linked
@@ -60,10 +57,8 @@ class CommSocketClient : CommSocket, Hashable {
         
     private var sockStatus: Status?
     var timeout: CFTimeInterval = 5.0
-    var delegate: CommSocketClientDelegate?
+    var delegate: UDClientDelegate?
     var junk: Any? = nil
-    
-    // MARK: Helper Methods
     
     func socketClientCreate(sock: CFSocketNativeHandle) throws -> Void {
         
@@ -131,8 +126,6 @@ class CommSocketClient : CommSocket, Hashable {
         Logger.shared.log("Did connect Client without throwing any error")
     }
     
-    // MARK: Client Messaging:
-    
     func messageReceived(data:Data) -> Void {
         Logger.shared.log("Client has received message data: \(data)")
         do {
@@ -196,8 +189,6 @@ class CommSocketClient : CommSocket, Hashable {
                 underlying: error))
         }
     }
-    
-    // MARK: Start / Stop Client:
     
     func start() -> Void {
         if (self.sockStatus == .linked) {
@@ -267,13 +258,9 @@ class CommSocketClient : CommSocket, Hashable {
         self.sockStatus = .disconnected
     }
     
-    // MARK: Client Validation
-    
     func isSockConnected() -> Bool{
         return (self.sockStatus == .linked) && self.isSockRefValid()
     }
-    
-    // MARK: Initialization
     
     init(socketUrl: NSURL) {
         super.init()
@@ -316,7 +303,7 @@ class CommSocketClient : CommSocket, Hashable {
     }
 
     // MARK: conform to Equatable
-    static func == (lhs: CommSocketClient, rhs: CommSocketClient) -> Bool {
+    static func == (lhs: UDClient, rhs: UDClient) -> Bool {
         return lhs === rhs
     }
     
