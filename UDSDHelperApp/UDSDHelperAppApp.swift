@@ -1,10 +1,19 @@
 import SwiftUI
 
 @main
-struct UDSDHelperAppApp: App {
+struct UDSDHelperApp: App {
+    var server: CommSocketServer? = nil;  // stays nil in Main app
+
+    init() {
+        self.server = CommSocketServer(socketUrl: CommSocket.toHelperUrl())
+        self.server?.start()
+        self.server?.delegate = Logger.shared
+    }
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HelperAppContentView(server: self.server!)
         }
     }
+    
 }

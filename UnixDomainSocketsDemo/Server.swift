@@ -1,6 +1,34 @@
 import Foundation
 
-class CommSocketServer {
+// MARK: Server Callback:
+
+func SocketServerCallback(
+    _ sock: CFSocket?,
+    _ type: CFSocketCallBackType,
+    _ address: CFData?,
+    _ data: UnsafeRawPointer?,
+    _ info: UnsafeMutableRawPointer?) {
+    
+    if let info = info {
+        let server = unsafeBitCast(info, to:CommSocketServer.self)
+        Logger.shared.log("Server received socket callback")
+        
+        if type == .acceptCallBack {
+            Logger.shared.log("Type is .acceptCallBack")
+            if let data = data {
+                /* The CFSocketNativeHandle type is an int, which is an Int32
+                 on a 64-bit macOS.  For further reading:
+                 https://www.wwdcnotes.com/notes/wwdc20/10167/ */
+                let handle = CFSocketNativeHandle(data.load(as: Int32.self))
+                server.addConnectedClient(handle: handle)
+            }
+        }
+    }
+    Logger.shared.log("Server received socket callback but no server")
+}
+
+
+class CommSocketServer : CommSocket, CommSocketClientDelegate {
     enum Status {
         case unknown
         case running
@@ -9,190 +37,217 @@ class CommSocketServer {
         case stopping
     }
     
-    var startServerCleanup: Bool
-    @property (readwrite, nonatomic) CommSocketServerStatus sockStatus;
-    @property (readwrite,  strong, nonatomic) NSSet *sockClients;
-    static void SocketServerCallback (CFSocketRef sock, CFSocketCallBackType type, CFDataRef address, const void *data, void *info);
-    @end
-
-    #pragma mark - Server Implementation:
-
-    @implementation CommSocketServer
-
-    @synthesize delegate;
-    @synthesize sockStatus;
-    @synthesize sockClients;
-
-    #pragma mark - Helper Methods:
-
-    - (BOOL) socketServerCreate {
-
-        if ( self.sockRef != nil ) return NO;
-        CFSocketNativeHandle sock = socket( AF_UNIX, SOCK_STREAM, 0 );
-        CFSocketContext context = { 0, (__bridge void *)self, nil, nil, nil };
-        CFSocketRef refSock = CFSocketCreateWithNative( nil, sock, kCFSocketAcceptCallBack, SocketServerCallback, &context );
-
-        if ( refSock == nil ) return NO;
-
-        int opt = 1;
-        setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (void *)&opt, sizeof(opt));
-        setsockopt(sock, SOL_SOCKET, SO_NOSIGPIPE, (void *)&opt, sizeof(opt));
-
-        self.sockRef = refSock;
-        CFRelease( refSock );
-
-        return YES;
-    }
-
-    - (BOOL) socketServerBind {
-        if ( self.sockRef == nil ) return NO;
-        unlink( [[self.sockURL path] fileSystemRepresentation] );
-        if ( CFSocketSetAddress(self.sockRef, (__bridge CFDataRef)self.sockAddress) != kCFSocketSuccess ) return NO;
-        return YES;
-    }
-
-    #pragma mark - Connected Clients:
-
-    - (void) disconnectClients {
+    var sockStatus: CommSocketServer.Status = .unknown
+    var sockClients = Set<CommSocketClient>() // empty set
+    var delegate: CommSocketServerDelegate? = nil
 
 
-        for ( CommSocketClient *client in self.sockClients )
-            [client stopClient];
+    // MARK: Helper Methods:
 
-        self.sockClients = [NSSet set];
-    }
-
-    - (void) disconnectClient:(CommSocketClient *)client {
-
-        @synchronized( self ) {
-            NSMutableSet *clients = [NSMutableSet setWithSet:self.sockClients];
-
-            if ( [clients containsObject:client] ) {
-
-                if ( client.isSockRefValid ) [client stopClient];
-                [clients removeObject:client];
-                self.sockClients = clients;
-        } }
-    }
-
-    - (void) addConnectedClient:(CFSocketNativeHandle)handle {
-
-        @synchronized( self ) {
-            CommSocketClient *client = [CommSocketClient initWithSocket:handle];
-            client.delegate = self;
-            NSMutableSet *clients = [NSMutableSet setWithSet:self.sockClients];
-
-            if ( client.isSockConnected ) {
-                [clients addObject:client];
-                self.sockClients = clients;
-        } }
-    }
-
-    #pragma mark - Connected Client Protocols:
-
-    - (void) handleSocketClientDisconnect:(CommSocketClient *)client {
-
-        [self disconnectClient:client];
-    }
-
-    - (void) handleSocketClientMsgDict:(NSDictionary *)aDict client:(CommSocketClient *)client error:(NSError *)error {
-
-        if ( [self.delegate respondsToSelector:@selector(handleSocketServerMsgDict:fromClient:error:)] )
-            [self.delegate handleSocketServerMsgDict:aDict fromClient:client error:error];
-    }
-
-    #pragma mark - Connected Client Messaging:
-
-    #pragma mark - Start / Stop Server:
-
-    - (BOOL) startServerCleanup { [self stopServer]; return NO; }
-
-    - (BOOL) startServer {
-
-        if ( self.sockStatus == CommSocketServerStatusRunning ) {
-            return YES;
+    func socketServerCreate() throws -> Void {
+        if (self.sockRef != nil) {
+            throw Self.UDSErr(kind: .socketAlreadyCreated)
         }
         
-        self.sockStatus = CommSocketServerStatusStarting;
+        let sock = socket( AF_UNIX, SOCK_STREAM, 0 )
+        var context = CFSocketContext(
+            version: 0,
+            info: unsafeBitCast(self, to: UnsafeMutableRawPointer.self),
+            retain: nil,
+            release: nil,
+            copyDescription: nil
+        )
 
-        if ( ![self socketServerCreate] ) {
-            return self.startServerCleanup;
+        let refSock = CFSocketCreateWithNative (
+            nil,
+            sock,
+            UInt(CFSocketCallBackType.acceptCallBack.rawValue),
+            SocketServerCallback,
+            &context
+        )
+        
+        if (refSock == nil) {
+            throw Self.UDSErr(kind: .systemFailedToCreateSocket)
         }
-        if ( ![self socketServerBind]   ) {
-            return self.startServerCleanup;
+        
+        var opt = 1
+        let socklen = UInt32(MemoryLayout<UInt32>.size)
+        setsockopt(
+            sock,
+            SOL_SOCKET,
+            SO_REUSEADDR,
+            &opt,
+            socklen
+        )
+        setsockopt(
+            sock,
+            SOL_SOCKET,
+            SO_NOSIGPIPE,
+            &opt,
+            socklen
+        )
+        
+        self.sockRef = refSock;
+    }
+    
+    func socketServerBind() throws -> Void {        
+        if (self.sockRef == nil) {
+            throw Self.UDSErr(kind: .cannotConnectToNilSocket)
         }
-
-        CFRunLoopSourceRef sourceRef = CFSocketCreateRunLoopSource( kCFAllocatorDefault, self.sockRef, 0 );
-        CFRunLoopAddSource( CFRunLoopGetCurrent(), sourceRef, kCFRunLoopCommonModes );
-        CFRelease( sourceRef );
-
-        self.sockStatus = CommSocketServerStatusRunning;
-        return YES;
-    }
-
-    - (BOOL) stopServer {
-
-        self.sockStatus = CommSocketServerStatusStopping;
-
-        [self disconnectClients];
-
-        if ( self.sockRef != nil ) {
-
-            CFSocketInvalidate(self.sockRef);
-            self.sockRef = nil;
+        var path = [Int8](repeating: 0, count: Int(PATH_MAX))
+        if let url = self.sockUrl {
+            if (url.getFileSystemRepresentation(&path, maxLength: Int(PATH_MAX))) {
+                unlink(path)
+            }
         }
-
-        unlink( [[self.sockURL path] fileSystemRepresentation] );
-
-        if ( [self.delegate respondsToSelector:@selector(handleSocketServerStopped:)] )
-            [self.delegate handleSocketServerStopped:self];
-
-        self.sockStatus = CommSocketServerStatusStopped;
-        return YES;
-    }
-
-    #pragma mark - Server Validation:
-
-    - (BOOL) isSockConnected {
-
-        if ( self.sockStatus == CommSocketServerStatusRunning )
-            return self.isSockRefValid;
-
-        return NO;
-    }
-
-    #pragma mark - Initialization:
-
-    + (id) initAndStartServer:(NSURL *)socketURL {
-
-        CommSocketServer *server = [[CommSocketServer alloc] initWithSocketURL:socketURL];
-        [server startServer];
-        return server;
-    }
-
-    - (id) initWithSocketURL:(NSURL *)socketURL {
-
-        if ( (self = [super init]) ) {
-
-            self.sockURL     = socketURL;
-            self.sockStatus  = CommSocketServerStatusStopped;
-            self.sockClients = [NSSet set];
-
-        } return self;
-    }
-
-    - (void) dealloc { [self stopServer]; }
-
-    #pragma mark - Server Callback:
-
-    static void SocketServerCallback (CFSocketRef sock, CFSocketCallBackType type, CFDataRef address, const void *data, void *info) {
-
-        CommSocketServer *server = (__bridge CommSocketServer *)info;
-
-        if ( kCFSocketAcceptCallBack == type ) {
-            CFSocketNativeHandle handle = *(CFSocketNativeHandle *)data;
-            [server addConnectedClient:handle];
+        
+        if let sockAddress = self.sockAddress() {
+            let success = CFSocketSetAddress(
+                self.sockRef,
+                sockAddress as CFData?
+            )
+            
+            switch success {
+            case .timeout:
+                throw Self.UDSErr(kind: .setSockAddressTimedOut)
+            case .success:
+                break
+            case .error:
+                throw Self.UDSErr(kind: .setAddressUnspecifiedError)
+            @unknown default:
+                throw Self.UDSErr(kind: .setAddressKnownUnknownError)
+            }
+        } else {
+            throw Self.UDSErr(kind: .cannotConnectToNilAddress)
         }
     }
 
+
+    // MARK: Connected Clients:
+    
+    func disconnectClients() -> Void {
+        self.sockClients.forEach { client in
+            self.disconnectClient(client)
+        }
+    }
+    
+    func disconnectClient(_ client: CommSocketClient?) -> Void {
+        objc_sync_enter(self) // Someday, use Swift 5.5 concurrency instead
+        if let client = client {
+            self.sockClients.remove(client)
+            client.stop()
+        }
+        objc_sync_exit(self) // Someday, use Swift 5.5 concurrency instead
+    }
+    
+    func addConnectedClient(handle: CFSocketNativeHandle) -> Void {
+        objc_sync_enter(self) // Someday, use Swift 5.5 concurrency instead
+        if let client = CommSocketClient(socket: handle) {
+            client.delegate = self
+
+            if ( client.isSockConnected() ) {
+                self.sockClients.insert(client)
+                Logger.shared.log("Added client \(client) Now have \(self.sockClients.count) clients")
+            }
+        }
+        objc_sync_exit(self) // Someday, use Swift 5.5 concurrency instead
+    }
+    
+    // MARK: Connected Client Protocols:
+
+    func handleSocketClientDisconnect(_ client: CommSocketClient?) {
+        self.disconnectClient(client)
+    }
+    
+    func handleSocketClientMsgDict(
+        _ aDict: [AnyHashable : Any]?,
+        client: CommSocketClient?,
+        error: Error?
+    ) {
+        self.delegate?.handleSocketServerMsgDict(
+            aDict,
+            from: client,
+            error: error
+        )
+    }
+
+    // MARK:  Start / Stop Server:
+    
+    func start() -> Void {
+        Logger.shared.log("Attempting to start server")
+        if (self.sockStatus == .running) {
+            Logger.shared.log("Ooops, server is already started and running")
+            return
+        }
+        self.sockStatus = .starting
+        
+        do {
+            try self.socketServerCreate()
+        } catch {
+            Logger.shared.registerError(Self.UDSErr(kind: .nested(identifier: "strtSrvr-create",
+                                  underlying: error)))
+        }
+        Logger.shared.log("Created server socket")
+
+        do {
+            try self.socketServerBind()
+        } catch {
+            Logger.shared.registerError(Self.UDSErr(kind: .nested(identifier: "strtSrvr-bind",
+                                  underlying: error)))
+        }
+        Logger.shared.log("Bound server socket")
+
+        let sourceRef = CFSocketCreateRunLoopSource(
+            kCFAllocatorDefault,
+            self.sockRef,
+            0
+        )
+        CFRunLoopAddSource(
+            CFRunLoopGetCurrent(),
+            sourceRef,
+            CFRunLoopMode.commonModes
+        )
+        self.sockRLSourceRef = sourceRef
+        self.sockStatus = .running
+        Logger.shared.log("Started server run loop")
+    }
+
+    func stop() -> Void {
+        self.sockStatus = .stopping
+        self.disconnectClients()
+        if let sockRef = self.sockRef {
+            CFSocketInvalidate(sockRef)
+            self.sockRef = nil
+        }
+
+        var path = [Int8](repeating: 0, count: Int(PATH_MAX))
+        if let url = self.sockUrl {
+            if (url.getFileSystemRepresentation(&path, maxLength: Int(PATH_MAX))) {
+                unlink(path)
+            }
+        }
+        
+        self.delegate?.handleSocketServerStopped(self)
+        self.sockStatus = .stopped
+    }
+
+     // MARK: Server Validation:
+    
+    func isSockConnected() -> Bool {
+        return ((self.sockStatus == .running) && self.isSockRefValid())
+    }
+
+    // MARK: Initialization:
+
+    init?(socketUrl: NSURL) {
+        super.init()
+        
+        self.sockUrl = socketUrl
+        self.sockStatus = .stopped
+        self.sockClients = Set<CommSocketClient>() // empty set
+    }
+    
+    deinit {
+        self.stop()
+    }
 }

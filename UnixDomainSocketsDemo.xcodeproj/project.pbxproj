@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4806A08E26CC9B79005AEB93 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4806A08D26CC9B79005AEB93 /* Common.swift */; };
+		4806A08F26CC9B79005AEB93 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4806A08D26CC9B79005AEB93 /* Common.swift */; };
+		4806A09526CDFF50005AEB93 /* OtherApper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4806A09326CDF9E7005AEB93 /* OtherApper.swift */; };
+		4806A09726D34788005AEB93 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4806A09626D34788005AEB93 /* Logger.swift */; };
+		4806A09826D34788005AEB93 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4806A09626D34788005AEB93 /* Logger.swift */; };
 		48AAADAD26AE1C96005AB04F /* UDSDMainAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADAC26AE1C96005AB04F /* UDSDMainAppApp.swift */; };
-		48AAADAF26AE1C96005AB04F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADAE26AE1C96005AB04F /* ContentView.swift */; };
+		48AAADAF26AE1C96005AB04F /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADAE26AE1C96005AB04F /* MainContentView.swift */; };
 		48AAADB126AE1C97005AB04F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48AAADB026AE1C97005AB04F /* Assets.xcassets */; };
 		48AAADB426AE1C97005AB04F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48AAADB326AE1C97005AB04F /* Preview Assets.xcassets */; };
 		48AAADCB26AE1CF8005AB04F /* UDSDHelperAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADCA26AE1CF8005AB04F /* UDSDHelperAppApp.swift */; };
-		48AAADCD26AE1CF8005AB04F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADCC26AE1CF8005AB04F /* ContentView.swift */; };
+		48AAADCD26AE1CF8005AB04F /* HelperContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADCC26AE1CF8005AB04F /* HelperContentView.swift */; };
 		48AAADCF26AE1CF9005AB04F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48AAADCE26AE1CF9005AB04F /* Assets.xcassets */; };
 		48AAADD226AE1CF9005AB04F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48AAADD126AE1CF9005AB04F /* Preview Assets.xcassets */; };
 		48AAADDE26AE1DE1005AB04F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADDD26AE1DE1005AB04F /* AppDelegate.m */; };
@@ -55,18 +60,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4806A08D26CC9B79005AEB93 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		4806A09326CDF9E7005AEB93 /* OtherApper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherApper.swift; sourceTree = "<group>"; };
+		4806A09626D34788005AEB93 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		48AAAD9026ADBC10005AB04F /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		48AAAD9426ADBD0B005AB04F /* Client.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Client.m; sourceTree = "<group>"; };
 		48AAAD9626ADBD82005AB04F /* Socket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Socket.m; sourceTree = "<group>"; };
 		48AAAD9726ADBD82005AB04F /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Server.m; sourceTree = "<group>"; };
 		48AAADAA26AE1C96005AB04F /* UDSDMainApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDSDMainApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48AAADAC26AE1C96005AB04F /* UDSDMainAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDSDMainAppApp.swift; sourceTree = "<group>"; };
-		48AAADAE26AE1C96005AB04F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		48AAADAE26AE1C96005AB04F /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
 		48AAADB026AE1C97005AB04F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48AAADB326AE1C97005AB04F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		48AAADC826AE1CF8005AB04F /* UDSDHelperApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDSDHelperApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48AAADCA26AE1CF8005AB04F /* UDSDHelperAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDSDHelperAppApp.swift; sourceTree = "<group>"; };
-		48AAADCC26AE1CF8005AB04F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		48AAADCC26AE1CF8005AB04F /* HelperContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperContentView.swift; sourceTree = "<group>"; };
 		48AAADCE26AE1CF9005AB04F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48AAADD126AE1CF9005AB04F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		48AAADDA26AE1DE1005AB04F /* UDSDMainAppObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDSDMainAppObjC.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,9 +126,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4806A09426CDFE8C005AEB93 /* Utiltiies */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utiltiies;
+			sourceTree = "<group>";
+		};
 		48170D9326A7957300005954 = {
 			isa = PBXGroup;
 			children = (
+				4806A09626D34788005AEB93 /* Logger.swift */,
+				4806A09426CDFE8C005AEB93 /* Utiltiies */,
 				48170D9E26A7957300005954 /* UnixDomainSocketsDemo */,
 				48AAADAB26AE1C96005AB04F /* UDSDMainApp */,
 				48AAADC926AE1CF8005AB04F /* UDSDHelperApp */,
@@ -144,6 +161,7 @@
 		48170D9E26A7957300005954 /* UnixDomainSocketsDemo */ = {
 			isa = PBXGroup;
 			children = (
+				4806A09326CDF9E7005AEB93 /* OtherApper.swift */,
 				48AAAD9026ADBC10005AB04F /* Common.h */,
 				48AAAD9426ADBD0B005AB04F /* Client.m */,
 				48AAAD9726ADBD82005AB04F /* Server.m */,
@@ -151,6 +169,7 @@
 				48AAAE0226AE6961005AB04F /* Socket.swift */,
 				48AAAE0526AE7181005AB04F /* Client.swift */,
 				48AAAE0826AE7189005AB04F /* Server.swift */,
+				4806A08D26CC9B79005AEB93 /* Common.swift */,
 			);
 			path = UnixDomainSocketsDemo;
 			sourceTree = "<group>";
@@ -159,7 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				48AAADAC26AE1C96005AB04F /* UDSDMainAppApp.swift */,
-				48AAADAE26AE1C96005AB04F /* ContentView.swift */,
+				48AAADAE26AE1C96005AB04F /* MainContentView.swift */,
 				48AAADB026AE1C97005AB04F /* Assets.xcassets */,
 				48AAADB226AE1C97005AB04F /* Preview Content */,
 			);
@@ -178,7 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				48AAADCA26AE1CF8005AB04F /* UDSDHelperAppApp.swift */,
-				48AAADCC26AE1CF8005AB04F /* ContentView.swift */,
+				48AAADCC26AE1CF8005AB04F /* HelperContentView.swift */,
 				48AAADCE26AE1CF9005AB04F /* Assets.xcassets */,
 				48AAADD026AE1CF9005AB04F /* Preview Content */,
 			);
@@ -380,10 +399,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				48AAAE0926AE718A005AB04F /* Server.swift in Sources */,
-				48AAADAF26AE1C96005AB04F /* ContentView.swift in Sources */,
+				48AAADAF26AE1C96005AB04F /* MainContentView.swift in Sources */,
 				48AAADAD26AE1C96005AB04F /* UDSDMainAppApp.swift in Sources */,
 				48AAAE0626AE7181005AB04F /* Client.swift in Sources */,
+				4806A09526CDFF50005AEB93 /* OtherApper.swift in Sources */,
+				4806A08E26CC9B79005AEB93 /* Common.swift in Sources */,
 				48AAAE0326AE6961005AB04F /* Socket.swift in Sources */,
+				4806A09726D34788005AEB93 /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,9 +414,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				48AAAE0A26AE718A005AB04F /* Server.swift in Sources */,
-				48AAADCD26AE1CF8005AB04F /* ContentView.swift in Sources */,
+				48AAADCD26AE1CF8005AB04F /* HelperContentView.swift in Sources */,
 				48AAADCB26AE1CF8005AB04F /* UDSDHelperAppApp.swift in Sources */,
 				48AAAE0726AE7181005AB04F /* Client.swift in Sources */,
+				4806A09826D34788005AEB93 /* Logger.swift in Sources */,
+				4806A08F26CC9B79005AEB93 /* Common.swift in Sources */,
 				48AAAE0426AE6961005AB04F /* Socket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,7 +533,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -562,7 +586,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -588,7 +612,6 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sheepsystems.UDSDMainApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -618,7 +641,6 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sheepsystems.UDSDMainApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -648,7 +670,6 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sheepsystems.UDSDHelperApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -678,7 +699,6 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sheepsystems.UDSDHelperApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
