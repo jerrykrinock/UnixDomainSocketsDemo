@@ -42,8 +42,8 @@
     return [NSString stringWithFormat:@"%s (%d)", strerror( errno ), errno ];
 }
 
-+ (NSURL*) toHelperUrl {
-    NSString* path = [NSHomeDirectory() stringByAppendingPathComponent:@"UDSDToHelper.socket"];
++ (NSURL*) serviceUrl {
+    NSString* path = [NSHomeDirectory() stringByAppendingPathComponent:@"UDSDService.socket"];
     return [NSURL fileURLWithPath:path];
 }
 

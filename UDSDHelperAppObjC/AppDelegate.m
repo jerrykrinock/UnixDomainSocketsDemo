@@ -10,7 +10,7 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    self.inboundSocket = [CommSocketServer initAndStartServer:[CommSocket toHelperUrl]];
+    self.inboundSocket = [CommSocketServer initAndStartServer:[CommSocket serviceUrl]];
     /*SSYDBL*/ NSLog(@"Helper created server:\n%@", self.inboundSocket);
 
     self.inboundSocket.delegate = self;

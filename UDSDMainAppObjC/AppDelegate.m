@@ -10,7 +10,7 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    self.outboundSocket = [CommSocketClient initAndStartClient:[CommSocket toHelperUrl]];
+    self.outboundSocket = [CommSocketClient initAndStartClient:[CommSocket serviceUrl]];
     /*SSYDBL*/ NSLog(@"Main created client: %@", self.outboundSocket);
     self.outboundSocket.delegate = self;
     

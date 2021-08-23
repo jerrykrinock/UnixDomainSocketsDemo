@@ -8,7 +8,10 @@ struct MainAppContentView: View {
     var body: some View {
         VStack {
             Spacer(minLength: 20)
-
+            Text("To check socket status in Terminal.app:")
+            Text("netstat -f unix | grep -e UDSDService -e Recv-Q")
+            /* (The last -e in that command is to print the column headings.) */
+            Spacer(minLength: 20)
             Button(action: {
                 launchHelper()
             }) {

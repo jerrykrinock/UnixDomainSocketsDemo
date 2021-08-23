@@ -2,11 +2,15 @@ import SwiftUI
 
 @main
 struct UDSDMainApp: App {
-    var client: CommSocketClient? = nil;  // stays nil in Helper app
-    var server: CommSocketServer? = nil;  // stays nil in Main app
+    var client: CommSocketClient? = nil
+    var consumer: Consumer? = nil
 
     init() {
-        self.client = CommSocketClient(socketUrl: CommSocket.toHelperUrl())
+        self.client = CommSocketClient(socketUrl: CommSocket.serviceUrl())
+        self.consumer = Consumer()
+        if let consumer = consumer {
+            self.client?.delegate = consumer
+        }
     }
 
     var body: some Scene {

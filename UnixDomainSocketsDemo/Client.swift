@@ -32,18 +32,18 @@ func SocketClientCallback(
                 let cfData = unsafeBitCast(data, to: CFData.self)
                 let nsData = cfData as NSData
                 let swiftData = nsData as Data
-                Logger.shared.log("Client callback has received .dataCallback of \(swiftData.count) bytes")
+                Logger.shared.log("Client callback has received a .dataCallback of \(swiftData.count) bytes")
                 if (swiftData.count > 0) {
                     client.messageReceived(data: swiftData)
                 } else {
                     client.stop()
                 }
             case .connectCallBack:
-                Logger.shared.log("Client callback has received .connectCallback")
+                Logger.shared.log("Client callback has received a .connectCallback")
             case .acceptCallBack:
-                Logger.shared.log("Client callback has received an .acceptCallback")
+                Logger.shared.log("Client callback has received a .acceptCallback")
             default:
-                Logger.shared.log("Client callback has received an unknown callback")
+                Logger.shared.log("Client callback has received a unknown callback")
             }
         }
     }

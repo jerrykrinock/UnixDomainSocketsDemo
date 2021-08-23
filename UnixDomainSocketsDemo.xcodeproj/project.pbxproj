@@ -12,6 +12,8 @@
 		4806A09526CDFF50005AEB93 /* OtherApper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4806A09326CDF9E7005AEB93 /* OtherApper.swift */; };
 		4806A09726D34788005AEB93 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4806A09626D34788005AEB93 /* Logger.swift */; };
 		4806A09826D34788005AEB93 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4806A09626D34788005AEB93 /* Logger.swift */; };
+		4806A09A26D40A04005AEB93 /* Producer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4806A09926D40A04005AEB93 /* Producer.swift */; };
+		4806A09C26D4149F005AEB93 /* Consumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4806A09B26D4149E005AEB93 /* Consumer.swift */; };
 		48AAADAD26AE1C96005AB04F /* UDSDMainAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADAC26AE1C96005AB04F /* UDSDMainAppApp.swift */; };
 		48AAADAF26AE1C96005AB04F /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADAE26AE1C96005AB04F /* MainContentView.swift */; };
 		48AAADB126AE1C97005AB04F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48AAADB026AE1C97005AB04F /* Assets.xcassets */; };
@@ -63,6 +65,8 @@
 		4806A08D26CC9B79005AEB93 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		4806A09326CDF9E7005AEB93 /* OtherApper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherApper.swift; sourceTree = "<group>"; };
 		4806A09626D34788005AEB93 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		4806A09926D40A04005AEB93 /* Producer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Producer.swift; path = UDSDHelperApp/Producer.swift; sourceTree = "<group>"; };
+		4806A09B26D4149E005AEB93 /* Consumer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Consumer.swift; path = UDSDMainApp/Consumer.swift; sourceTree = "<group>"; };
 		48AAAD9026ADBC10005AB04F /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		48AAAD9426ADBD0B005AB04F /* Client.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Client.m; sourceTree = "<group>"; };
 		48AAAD9626ADBD82005AB04F /* Socket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Socket.m; sourceTree = "<group>"; };
@@ -136,6 +140,8 @@
 		48170D9326A7957300005954 = {
 			isa = PBXGroup;
 			children = (
+				4806A09B26D4149E005AEB93 /* Consumer.swift */,
+				4806A09926D40A04005AEB93 /* Producer.swift */,
 				4806A09626D34788005AEB93 /* Logger.swift */,
 				4806A09426CDFE8C005AEB93 /* Utiltiies */,
 				48170D9E26A7957300005954 /* UnixDomainSocketsDemo */,
@@ -398,6 +404,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4806A09C26D4149F005AEB93 /* Consumer.swift in Sources */,
 				48AAAE0926AE718A005AB04F /* Server.swift in Sources */,
 				48AAADAF26AE1C96005AB04F /* MainContentView.swift in Sources */,
 				48AAADAD26AE1C96005AB04F /* UDSDMainAppApp.swift in Sources */,
@@ -420,6 +427,7 @@
 				4806A09826D34788005AEB93 /* Logger.swift in Sources */,
 				4806A08F26CC9B79005AEB93 /* Common.swift in Sources */,
 				48AAAE0426AE6961005AB04F /* Socket.swift in Sources */,
+				4806A09A26D40A04005AEB93 /* Producer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -43,8 +43,8 @@ typedef enum _CommSocketClientStatus {
 @property (readonly, strong, nonatomic) NSData   *sockAddress;
 @property (readonly, strong, nonatomic) NSString *sockLastError;
 
-+ (NSURL*)toHelperUrl;
-+ (NSURL*)fromHelperUrl;
++ (NSURL*)serviceUrl;
+
 @end
 
 @interface CommSocketServer : CommSocket <CommSocketClientDelegate> { id <CommSocketServerDelegate> delegate; }

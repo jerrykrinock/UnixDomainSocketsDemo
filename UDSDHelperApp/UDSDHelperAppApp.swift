@@ -2,12 +2,14 @@ import SwiftUI
 
 @main
 struct UDSDHelperApp: App {
-    var server: CommSocketServer? = nil;  // stays nil in Main app
+    var server: CommSocketServer? = nil
+    var producer: Producer? = nil
 
     init() {
-        self.server = CommSocketServer(socketUrl: CommSocket.toHelperUrl())
+        self.server = CommSocketServer(socketUrl: CommSocket.serviceUrl())
         self.server?.start()
-        self.server?.delegate = Logger.shared
+        self.producer = Producer()
+        self.server?.delegate = producer
     }
 
     var body: some Scene {

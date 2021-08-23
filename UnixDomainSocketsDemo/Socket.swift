@@ -177,15 +177,11 @@ class CommSocket : ObservableObject {
             errno)
     }
     
-    static func toHelperUrl() -> NSURL {
+    /* A single Unix Domain Socket provides two way communication.  So we
+     define only one URL. */
+    static func serviceUrl() -> NSURL {
         var url = NSURL.init(fileURLWithPath:NSHomeDirectory())
-        url = url.appendingPathComponent("UDSDToHelper.socket")! as NSURL
-        return url
-    }
-    
-    static func fromHelperUrl() -> NSURL {
-        var url = NSURL.init(fileURLWithPath:NSHomeDirectory())
-        url = url.appendingPathComponent("UDSDFromHelper.socket")! as NSURL
+        url = url.appendingPathComponent("UDSDService.socket")! as NSURL
         return url
     }
 }
