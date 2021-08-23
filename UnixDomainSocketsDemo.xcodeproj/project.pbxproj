@@ -22,20 +22,6 @@
 		48AAADCD26AE1CF8005AB04F /* HelperContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADCC26AE1CF8005AB04F /* HelperContentView.swift */; };
 		48AAADCF26AE1CF9005AB04F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48AAADCE26AE1CF9005AB04F /* Assets.xcassets */; };
 		48AAADD226AE1CF9005AB04F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48AAADD126AE1CF9005AB04F /* Preview Assets.xcassets */; };
-		48AAADDE26AE1DE1005AB04F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADDD26AE1DE1005AB04F /* AppDelegate.m */; };
-		48AAADE026AE1DE1005AB04F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48AAADDF26AE1DE1005AB04F /* Assets.xcassets */; };
-		48AAADE326AE1DE1005AB04F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48AAADE126AE1DE1005AB04F /* MainMenu.xib */; };
-		48AAADE526AE1DE1005AB04F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADE426AE1DE1005AB04F /* main.m */; };
-		48AAADF126AE1E0A005AB04F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADF026AE1E0A005AB04F /* AppDelegate.m */; };
-		48AAADF326AE1E0B005AB04F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48AAADF226AE1E0B005AB04F /* Assets.xcassets */; };
-		48AAADF626AE1E0B005AB04F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48AAADF426AE1E0B005AB04F /* MainMenu.xib */; };
-		48AAADF826AE1E0B005AB04F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADF726AE1E0B005AB04F /* main.m */; };
-		48AAADFC26AE49B2005AB04F /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAD9426ADBD0B005AB04F /* Client.m */; };
-		48AAADFD26AE49B3005AB04F /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAD9426ADBD0B005AB04F /* Client.m */; };
-		48AAADFE26AE49B6005AB04F /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAD9726ADBD82005AB04F /* Server.m */; };
-		48AAADFF26AE49B7005AB04F /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAD9726ADBD82005AB04F /* Server.m */; };
-		48AAAE0026AE49BA005AB04F /* Socket.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAD9626ADBD82005AB04F /* Socket.m */; };
-		48AAAE0126AE49BB005AB04F /* Socket.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAD9626ADBD82005AB04F /* Socket.m */; };
 		48AAAE0326AE6961005AB04F /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAE0226AE6961005AB04F /* Socket.swift */; };
 		48AAAE0426AE6961005AB04F /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAE0226AE6961005AB04F /* Socket.swift */; };
 		48AAAE0626AE7181005AB04F /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAE0526AE7181005AB04F /* Client.swift */; };
@@ -52,13 +38,6 @@
 			remoteGlobalIDString = 48AAADC726AE1CF8005AB04F;
 			remoteInfo = UDSDHelperApp;
 		};
-		4814FB8626B7B9FA00376C37 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 48170D9426A7957300005954 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 48AAADEC26AE1E0A005AB04F;
-			remoteInfo = UDSDHelperAppObjC;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -67,10 +46,6 @@
 		4806A09626D34788005AEB93 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		4806A09926D40A04005AEB93 /* Producer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Producer.swift; path = UDSDHelperApp/Producer.swift; sourceTree = "<group>"; };
 		4806A09B26D4149E005AEB93 /* Consumer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Consumer.swift; path = UDSDMainApp/Consumer.swift; sourceTree = "<group>"; };
-		48AAAD9026ADBC10005AB04F /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
-		48AAAD9426ADBD0B005AB04F /* Client.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Client.m; sourceTree = "<group>"; };
-		48AAAD9626ADBD82005AB04F /* Socket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Socket.m; sourceTree = "<group>"; };
-		48AAAD9726ADBD82005AB04F /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Server.m; sourceTree = "<group>"; };
 		48AAADAA26AE1C96005AB04F /* UDSDMainApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDSDMainApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48AAADAC26AE1C96005AB04F /* UDSDMainAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDSDMainAppApp.swift; sourceTree = "<group>"; };
 		48AAADAE26AE1C96005AB04F /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
@@ -81,18 +56,6 @@
 		48AAADCC26AE1CF8005AB04F /* HelperContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperContentView.swift; sourceTree = "<group>"; };
 		48AAADCE26AE1CF9005AB04F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48AAADD126AE1CF9005AB04F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		48AAADDA26AE1DE1005AB04F /* UDSDMainAppObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDSDMainAppObjC.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		48AAADDC26AE1DE1005AB04F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		48AAADDD26AE1DE1005AB04F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		48AAADDF26AE1DE1005AB04F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		48AAADE226AE1DE1005AB04F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		48AAADE426AE1DE1005AB04F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		48AAADED26AE1E0A005AB04F /* UDSDHelperAppObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDSDHelperAppObjC.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		48AAADEF26AE1E0A005AB04F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		48AAADF026AE1E0A005AB04F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		48AAADF226AE1E0B005AB04F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		48AAADF526AE1E0B005AB04F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		48AAADF726AE1E0B005AB04F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		48AAAE0226AE6961005AB04F /* Socket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = "<group>"; };
 		48AAAE0526AE7181005AB04F /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		48AAAE0826AE7189005AB04F /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
@@ -113,42 +76,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		48AAADD726AE1DE1005AB04F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		48AAADEA26AE1E0A005AB04F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4806A09426CDFE8C005AEB93 /* Utiltiies */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utiltiies;
-			sourceTree = "<group>";
-		};
 		48170D9326A7957300005954 = {
 			isa = PBXGroup;
 			children = (
 				4806A09B26D4149E005AEB93 /* Consumer.swift */,
 				4806A09926D40A04005AEB93 /* Producer.swift */,
 				4806A09626D34788005AEB93 /* Logger.swift */,
-				4806A09426CDFE8C005AEB93 /* Utiltiies */,
 				48170D9E26A7957300005954 /* UnixDomainSocketsDemo */,
 				48AAADAB26AE1C96005AB04F /* UDSDMainApp */,
 				48AAADC926AE1CF8005AB04F /* UDSDHelperApp */,
-				48AAADDB26AE1DE1005AB04F /* UDSDMainAppObjC */,
-				48AAADEE26AE1E0A005AB04F /* UDSDHelperAppObjC */,
 				48170D9D26A7957300005954 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -158,8 +97,6 @@
 			children = (
 				48AAADAA26AE1C96005AB04F /* UDSDMainApp.app */,
 				48AAADC826AE1CF8005AB04F /* UDSDHelperApp.app */,
-				48AAADDA26AE1DE1005AB04F /* UDSDMainAppObjC.app */,
-				48AAADED26AE1E0A005AB04F /* UDSDHelperAppObjC.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,10 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				4806A09326CDF9E7005AEB93 /* OtherApper.swift */,
-				48AAAD9026ADBC10005AB04F /* Common.h */,
-				48AAAD9426ADBD0B005AB04F /* Client.m */,
-				48AAAD9726ADBD82005AB04F /* Server.m */,
-				48AAAD9626ADBD82005AB04F /* Socket.m */,
 				48AAAE0226AE6961005AB04F /* Socket.swift */,
 				48AAAE0526AE7181005AB04F /* Client.swift */,
 				48AAAE0826AE7189005AB04F /* Server.swift */,
@@ -218,30 +151,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		48AAADDB26AE1DE1005AB04F /* UDSDMainAppObjC */ = {
-			isa = PBXGroup;
-			children = (
-				48AAADDC26AE1DE1005AB04F /* AppDelegate.h */,
-				48AAADDD26AE1DE1005AB04F /* AppDelegate.m */,
-				48AAADDF26AE1DE1005AB04F /* Assets.xcassets */,
-				48AAADE126AE1DE1005AB04F /* MainMenu.xib */,
-				48AAADE426AE1DE1005AB04F /* main.m */,
-			);
-			path = UDSDMainAppObjC;
-			sourceTree = "<group>";
-		};
-		48AAADEE26AE1E0A005AB04F /* UDSDHelperAppObjC */ = {
-			isa = PBXGroup;
-			children = (
-				48AAADEF26AE1E0A005AB04F /* AppDelegate.h */,
-				48AAADF026AE1E0A005AB04F /* AppDelegate.m */,
-				48AAADF226AE1E0B005AB04F /* Assets.xcassets */,
-				48AAADF426AE1E0B005AB04F /* MainMenu.xib */,
-				48AAADF726AE1E0B005AB04F /* main.m */,
-			);
-			path = UDSDHelperAppObjC;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -280,41 +189,6 @@
 			productReference = 48AAADC826AE1CF8005AB04F /* UDSDHelperApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		48AAADD926AE1DE1005AB04F /* UDSDMainAppObjC */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 48AAADE626AE1DE1005AB04F /* Build configuration list for PBXNativeTarget "UDSDMainAppObjC" */;
-			buildPhases = (
-				48AAADD626AE1DE1005AB04F /* Sources */,
-				48AAADD726AE1DE1005AB04F /* Frameworks */,
-				48AAADD826AE1DE1005AB04F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4814FB8726B7B9FA00376C37 /* PBXTargetDependency */,
-			);
-			name = UDSDMainAppObjC;
-			productName = UDSDMainAppObjC;
-			productReference = 48AAADDA26AE1DE1005AB04F /* UDSDMainAppObjC.app */;
-			productType = "com.apple.product-type.application";
-		};
-		48AAADEC26AE1E0A005AB04F /* UDSDHelperAppObjC */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 48AAADF926AE1E0B005AB04F /* Build configuration list for PBXNativeTarget "UDSDHelperAppObjC" */;
-			buildPhases = (
-				48AAADE926AE1E0A005AB04F /* Sources */,
-				48AAADEA26AE1E0A005AB04F /* Frameworks */,
-				48AAADEB26AE1E0A005AB04F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = UDSDHelperAppObjC;
-			productName = UDSDHelperAppObjC;
-			productReference = 48AAADED26AE1E0A005AB04F /* UDSDHelperAppObjC.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -329,12 +203,6 @@
 						CreatedOnToolsVersion = 13.0;
 					};
 					48AAADC726AE1CF8005AB04F = {
-						CreatedOnToolsVersion = 13.0;
-					};
-					48AAADD926AE1DE1005AB04F = {
-						CreatedOnToolsVersion = 13.0;
-					};
-					48AAADEC26AE1E0A005AB04F = {
 						CreatedOnToolsVersion = 13.0;
 					};
 				};
@@ -354,8 +222,6 @@
 			targets = (
 				48AAADA926AE1C96005AB04F /* UDSDMainApp */,
 				48AAADC726AE1CF8005AB04F /* UDSDHelperApp */,
-				48AAADD926AE1DE1005AB04F /* UDSDMainAppObjC */,
-				48AAADEC26AE1E0A005AB04F /* UDSDHelperAppObjC */,
 			);
 		};
 /* End PBXProject section */
@@ -376,24 +242,6 @@
 			files = (
 				48AAADD226AE1CF9005AB04F /* Preview Assets.xcassets in Resources */,
 				48AAADCF26AE1CF9005AB04F /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		48AAADD826AE1DE1005AB04F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				48AAADE026AE1DE1005AB04F /* Assets.xcassets in Resources */,
-				48AAADE326AE1DE1005AB04F /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		48AAADEB26AE1E0A005AB04F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				48AAADF326AE1E0B005AB04F /* Assets.xcassets in Resources */,
-				48AAADF626AE1E0B005AB04F /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,30 +279,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		48AAADD626AE1DE1005AB04F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				48AAAE0026AE49BA005AB04F /* Socket.m in Sources */,
-				48AAADE526AE1DE1005AB04F /* main.m in Sources */,
-				48AAADDE26AE1DE1005AB04F /* AppDelegate.m in Sources */,
-				48AAADFE26AE49B6005AB04F /* Server.m in Sources */,
-				48AAADFC26AE49B2005AB04F /* Client.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		48AAADE926AE1E0A005AB04F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				48AAAE0126AE49BB005AB04F /* Socket.m in Sources */,
-				48AAADF826AE1E0B005AB04F /* main.m in Sources */,
-				48AAADF126AE1E0A005AB04F /* AppDelegate.m in Sources */,
-				48AAADFF26AE49B7005AB04F /* Server.m in Sources */,
-				48AAADFD26AE49B3005AB04F /* Client.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -463,31 +287,7 @@
 			target = 48AAADC726AE1CF8005AB04F /* UDSDHelperApp */;
 			targetProxy = 4814FB8426B7B9E100376C37 /* PBXContainerItemProxy */;
 		};
-		4814FB8726B7B9FA00376C37 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 48AAADEC26AE1E0A005AB04F /* UDSDHelperAppObjC */;
-			targetProxy = 4814FB8626B7B9FA00376C37 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		48AAADE126AE1DE1005AB04F /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				48AAADE226AE1DE1005AB04F /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		48AAADF426AE1E0B005AB04F /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				48AAADF526AE1E0B005AB04F /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		48170DA126A7957300005954 /* Debug */ = {
@@ -717,110 +517,6 @@
 			};
 			name = Release;
 		};
-		48AAADE726AE1DE1005AB04F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4MAMECY9VS;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMainNibFile = MainMenu;
-				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sheepsystems.UDSDMainAppObjC;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-			};
-			name = Debug;
-		};
-		48AAADE826AE1DE1005AB04F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4MAMECY9VS;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMainNibFile = MainMenu;
-				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sheepsystems.UDSDMainAppObjC;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-			};
-			name = Release;
-		};
-		48AAADFA26AE1E0B005AB04F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4MAMECY9VS;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMainNibFile = MainMenu;
-				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sheepsystems.UDSDHelperAppObjC;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-			};
-			name = Debug;
-		};
-		48AAADFB26AE1E0B005AB04F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4MAMECY9VS;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMainNibFile = MainMenu;
-				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sheepsystems.UDSDHelperAppObjC;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -847,24 +543,6 @@
 			buildConfigurations = (
 				48AAADD426AE1CF9005AB04F /* Debug */,
 				48AAADD526AE1CF9005AB04F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		48AAADE626AE1DE1005AB04F /* Build configuration list for PBXNativeTarget "UDSDMainAppObjC" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				48AAADE726AE1DE1005AB04F /* Debug */,
-				48AAADE826AE1DE1005AB04F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		48AAADF926AE1E0B005AB04F /* Build configuration list for PBXNativeTarget "UDSDHelperAppObjC" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				48AAADFA26AE1E0B005AB04F /* Debug */,
-				48AAADFB26AE1E0B005AB04F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
