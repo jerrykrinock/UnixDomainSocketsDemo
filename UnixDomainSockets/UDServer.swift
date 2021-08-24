@@ -177,16 +177,18 @@ class UDServer : UDSocket, UDClientDelegate {
         do {
             try self.socketServerCreate()
         } catch {
-            Logger.shared.registerError(Self.UDSErr(kind: .nested(identifier: "strtSrvr-create",
-                                  underlying: error)))
+            Logger.shared.logError(Self.UDSErr(kind: .nested(
+                identifier: "strtSrvr-create",
+                underlying: error)))
         }
         Logger.shared.log("Created server socket")
 
         do {
             try self.socketServerBind()
         } catch {
-            Logger.shared.registerError(Self.UDSErr(kind: .nested(identifier: "strtSrvr-bind",
-                                  underlying: error)))
+            Logger.shared.logError(Self.UDSErr(kind: .nested(
+                identifier: "strtSrvr-bind",
+                underlying: error)))
         }
         Logger.shared.log("Bound server socket")
 

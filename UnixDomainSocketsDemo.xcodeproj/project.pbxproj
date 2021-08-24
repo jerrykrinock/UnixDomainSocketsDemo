@@ -7,13 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4806A08E26CC9B79005AEB93 /* UDSDError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4806A08D26CC9B79005AEB93 /* UDSDError.swift */; };
-		4806A08F26CC9B79005AEB93 /* UDSDError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4806A08D26CC9B79005AEB93 /* UDSDError.swift */; };
 		4806A09526CDFF50005AEB93 /* OtherApper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4806A09326CDF9E7005AEB93 /* OtherApper.swift */; };
 		4806A09726D34788005AEB93 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4806A09626D34788005AEB93 /* Logger.swift */; };
 		4806A09826D34788005AEB93 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4806A09626D34788005AEB93 /* Logger.swift */; };
 		482D463D26D4303E008597FA /* Producer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482D463C26D4303E008597FA /* Producer.swift */; };
 		482D463F26D43054008597FA /* Consumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482D463E26D43054008597FA /* Consumer.swift */; };
+		482D464126D5A69A008597FA /* OtherApper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4806A09326CDF9E7005AEB93 /* OtherApper.swift */; };
 		48AAADAD26AE1C96005AB04F /* UDSDMainAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADAC26AE1C96005AB04F /* UDSDMainAppApp.swift */; };
 		48AAADAF26AE1C96005AB04F /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADAE26AE1C96005AB04F /* MainContentView.swift */; };
 		48AAADB126AE1C97005AB04F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48AAADB026AE1C97005AB04F /* Assets.xcassets */; };
@@ -41,11 +40,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4806A08D26CC9B79005AEB93 /* UDSDError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDSDError.swift; sourceTree = "<group>"; };
 		4806A09326CDF9E7005AEB93 /* OtherApper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherApper.swift; sourceTree = "<group>"; };
 		4806A09626D34788005AEB93 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		482D463C26D4303E008597FA /* Producer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Producer.swift; sourceTree = "<group>"; };
 		482D463E26D43054008597FA /* Consumer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consumer.swift; sourceTree = "<group>"; };
+		482D464026D57633008597FA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		48AAADAA26AE1C96005AB04F /* UDSDMainApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDSDMainApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48AAADAC26AE1C96005AB04F /* UDSDMainAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDSDMainAppApp.swift; sourceTree = "<group>"; };
 		48AAADAE26AE1C96005AB04F /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
@@ -82,8 +81,9 @@
 		48170D9326A7957300005954 = {
 			isa = PBXGroup;
 			children = (
+				482D464026D57633008597FA /* README.md */,
+				4806A09326CDF9E7005AEB93 /* OtherApper.swift */,
 				4806A09626D34788005AEB93 /* Logger.swift */,
-				4806A08D26CC9B79005AEB93 /* UDSDError.swift */,
 				48170D9E26A7957300005954 /* UnixDomainSockets */,
 				48AAADAB26AE1C96005AB04F /* Demo Main App */,
 				48AAADC926AE1CF8005AB04F /* Demo Helper App */,
@@ -103,7 +103,6 @@
 		48170D9E26A7957300005954 /* UnixDomainSockets */ = {
 			isa = PBXGroup;
 			children = (
-				4806A09326CDF9E7005AEB93 /* OtherApper.swift */,
 				48AAAE0226AE6961005AB04F /* UDSocket.swift */,
 				48AAAE0526AE7181005AB04F /* UDClient.swift */,
 				48AAAE0826AE7189005AB04F /* UDServer.swift */,
@@ -258,7 +257,6 @@
 				48AAADAD26AE1C96005AB04F /* UDSDMainAppApp.swift in Sources */,
 				48AAAE0626AE7181005AB04F /* UDClient.swift in Sources */,
 				4806A09526CDFF50005AEB93 /* OtherApper.swift in Sources */,
-				4806A08E26CC9B79005AEB93 /* UDSDError.swift in Sources */,
 				48AAAE0326AE6961005AB04F /* UDSocket.swift in Sources */,
 				4806A09726D34788005AEB93 /* Logger.swift in Sources */,
 			);
@@ -273,8 +271,8 @@
 				48AAADCB26AE1CF8005AB04F /* UDSDHelperAppApp.swift in Sources */,
 				48AAAE0726AE7181005AB04F /* UDClient.swift in Sources */,
 				4806A09826D34788005AEB93 /* Logger.swift in Sources */,
+				482D464126D5A69A008597FA /* OtherApper.swift in Sources */,
 				482D463D26D4303E008597FA /* Producer.swift in Sources */,
-				4806A08F26CC9B79005AEB93 /* UDSDError.swift in Sources */,
 				48AAAE0426AE6961005AB04F /* UDSocket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

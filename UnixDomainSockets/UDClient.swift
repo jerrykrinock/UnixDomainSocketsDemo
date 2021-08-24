@@ -159,20 +159,25 @@ class UDClient : UDSocket, Hashable {
                                              self.timeout)
             switch socketErr {
             case .timeout:
-                Logger.shared.log("Send data result: .timeout")
-                throw Self.UDSErr(kind: .sendDataTimeout)
+                let error = Self.UDSErr(kind: .sendDataTimeout)
+                Logger.shared.logError(error)
+                throw error
             case .error:
-                Logger.shared.log("Send data result: .error")
-                throw Self.UDSErr(kind: .sendDataUnspecifiedError)
+                let error = Self.UDSErr(kind: .sendDataUnspecifiedError)
+                Logger.shared.logError(error)
+                throw error
             case .success:
                 Logger.shared.log("Send data result: .success")
                 break // do nothing
             @unknown default:
-                Logger.shared.log("Send data result: ????")
-                throw Self.UDSErr(kind: .sendDataKnownUnknownError)
+                let error = Self.UDSErr(kind: .sendDataKnownUnknownError)
+                Logger.shared.logError(error)
+                throw error
             }
         } else {
-            throw Self.UDSErr(kind: .socketNotConnected)
+            let error = Self.UDSErr(kind: .socketNotConnected)
+            Logger.shared.logError(error)
+            throw error
         }
     }
     
@@ -184,9 +189,11 @@ class UDClient : UDSocket, Hashable {
             )
             try self.sendMessageData(data: data)
         } catch {
-            throw Self.UDSErr(kind: .nested(
+            let error = Self.UDSErr(kind: .nested(
                 identifier: #function,
                 underlying: error))
+            Logger.shared.logError(error)
+            throw error
         }
     }
     
@@ -200,15 +207,15 @@ class UDClient : UDSocket, Hashable {
         
         if (sock == 0) {
             self.stop()
-            Logger.shared.registerError(Self.UDSErr(kind: .systemFailedToCreateSocket))
+            Logger.shared.logError(Self.UDSErr(kind: .systemFailedToCreateSocket))
             return
         }
-        
+
         do {
             try self.socketClientCreate(sock: sock)
         } catch {
             self.stop()
-            Logger.shared.registerError(Self.UDSErr(kind: .nested(
+            Logger.shared.logError(Self.UDSErr(kind: .nested(
                 identifier: "startCl1",
                 underlying: error
             )))
@@ -219,7 +226,7 @@ class UDClient : UDSocket, Hashable {
             try self.socketClientConnect()
         } catch {
             self.stop()
-            Logger.shared.registerError(Self.UDSErr(kind: .nested(
+            Logger.shared.logError(Self.UDSErr(kind: .nested(
                 identifier: "startCl2",
                 underlying: error
             )))

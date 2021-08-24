@@ -1,16 +1,22 @@
 import Foundation
 
 class Logger : ObservableObject {    
-    @Published var log: String = "¡Hola Mundo!"
+    @Published var log: String = ""
     
     /* our singleton */
     static let shared = Logger()
+    
+    init() {
+        self.log("¡Hola Mundo!")
+    }
 
     func log(_ newEntry: String) {
-        self.log = self.log + "\n" + newEntry
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss.SSS "
+        self.log = self.log + "\n" + dateFormatter.string(from: Date()) + newEntry
     }
     
-    func registerError(_ error: UDSocket.UDSErr) {
+    func logError(_ error: UDSocket.UDSErr) {
         self.log("ERROR: " + String(describing: error.kind) + "\n"
         + "    " +  error.localizedDescription)
     }
