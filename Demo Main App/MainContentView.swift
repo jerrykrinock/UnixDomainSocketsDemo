@@ -12,7 +12,8 @@ To run this demo, click the 3 buttons in order.
 
 1.  Launch Helper App.  The Helper App will start its internal server upon launch.
 2.  Start Internal Client.  (The Client is an object in this here Main app.)  It will connect to the sersver in the Helper.
-3.  Demo a Job.  This button will cause the Client to ask the helper/server for the time of day.  The server will respond.
+3.  Time of Day.  This button will cause the Client to ask the helper/server for the time of day.  The server will respond.
+3.  Big Dictionary.  This button will send a big dictionary to the server.  The server will echo it back.
 
 If you ever want to see the socket status in the system, in Terminal.app enter:
     netstat -f unix | grep -e UDSDService -e Recv-Q
@@ -39,19 +40,34 @@ If you ever want to see the socket status in the system, in Terminal.app enter:
                         underlying: error)))
                 }
             }) {
-                Text("Demo a Job")
+                Text("Time of Day")
             }
+            Button(action: {
+                do {
+                    var bigDict: Dictionary<String, String> = Dictionary()
+                    for i in 1...680 {  // 680 is OK, 681 fails
+                        bigDict[String(describing:i)] = String(describing:2*i)
+                    }
+                    try self.client.sendMessageDict(dictionary: bigDict)
+                } catch {
+                    Logger.shared.logError(UDClient.UDSErr(kind: .nested(
+                        identifier: "sendingBigDict",
+                        underlying: error)))
+                }
+            }) {
+                Text("Big Dictionary")
+            }
+
             Spacer(minLength: 20)
 
-            Text("LOG")
-                .frame(width: nil, height: nil, alignment: .topLeading)
+            Text("EVENT LOG")
+                .frame(maxWidth: .infinity, alignment: .topLeading)
             ScrollView {
-                VStack {
-                    Text(Logger.shared.log)
-                }.frame(maxWidth: .infinity, alignment: .leading)
+                Text(Logger.shared.log)
+                    .frame(maxWidth: .infinity, alignment: .topLeading)
             }
         }
-        .frame(width: 500, height: nil, alignment:.leading)
+        .frame(width: 500, alignment:.leading)
         .multilineTextAlignment(.leading)
         .padding()
         

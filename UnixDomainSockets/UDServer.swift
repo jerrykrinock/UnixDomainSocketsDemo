@@ -28,7 +28,7 @@ func SocketServerCallback(
 
 protocol UDServerDelegate: AnyObject {
     func handleSocketServerStopped(_ server: UDServer?)
-    func handleSocketServerMsgDict(_ aDict: [AnyHashable : Any]?, from client: UDClient?, error: Error?)
+    func handleSocketServerMsgDict(_ aDict: [String : String]?, from client: UDClient?, error: Error?)
 }
 
 class UDServer : UDSocket, UDClientDelegate {
@@ -155,7 +155,7 @@ class UDServer : UDSocket, UDClientDelegate {
     }
     
     func handleSocketClientMsgDict(
-        _ aDict: [AnyHashable : Any]?,
+        _ aDict: [String : String]?,
         client: UDClient?,
         error: Error?
     ) {

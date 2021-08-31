@@ -6,14 +6,22 @@ class Producer : UDServerDelegate {
     }
 
     func handleSocketServerMsgDict(
-        _ aDict: [AnyHashable : Any]?,
+        _ aDict: [String : String]?,
         from client: UDClient?,
         error: Error?) {
-        if let dict = aDict {
-            Logger.shared.log("Got message: \(dict)")
+        if let requestDic = aDict {
+            Logger.shared.log("Got dictionary from client \(String(describing: client))")
+            var replyDict: Dictionary<String, String> = Dictionary()
+            for key in requestDic.keys {
+                if (key == "Question from client")  && (requestDic[key] == "What time is it?") {
+                    replyDict[key] = "The time is \(Date())"
+                } else {
+                    replyDict[key] = requestDic[key]
+                }
+            }
+            
             do {
-                let answer = "son los \(Date())"
-                try client?.sendMessageDict(dictionary: ["Answer from server": answer])
+                try client?.sendMessageDict(dictionary: replyDict)
             } catch {
                 Logger.shared.log("Message send failed with error: \(error)")
             }

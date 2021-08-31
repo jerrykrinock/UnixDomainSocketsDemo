@@ -43,7 +43,7 @@ func SocketClientCallback(
 
 protocol UDClientDelegate: AnyObject {
     func handleSocketClientDisconnect(_ client: UDClient?)
-    func handleSocketClientMsgDict(_ aDict: [AnyHashable : Any]?, client: UDClient?, error: Error?)
+    func handleSocketClientMsgDict(_ aDict: [String : String]?, client: UDClient?, error: Error?)
 }
 
 class UDClient : UDSocket, Hashable {
@@ -131,7 +131,7 @@ class UDClient : UDSocket, Hashable {
         do {
             let jsonObject = try JSONSerialization.jsonObject(with: data,
                                                             options:JSONSerialization.ReadingOptions.init(rawValue: 0))
-            if let dict = jsonObject as? Dictionary<String, Any> {
+            if let dict = jsonObject as? Dictionary<String, String> {
                 self.delegate?.handleSocketClientMsgDict(dict, client: self, error: nil)
             } else {
                 let className = (jsonObject as AnyObject).className ?? "not an object"

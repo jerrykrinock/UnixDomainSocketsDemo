@@ -11,16 +11,14 @@ struct HelperAppContentView: View {
                 .frame(minWidth: 500.0, idealWidth: 500.0, maxWidth: 500.0, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .leading)
             Spacer(minLength: 20)
 
-            Text("LOG")
-                .frame(width: nil, height: nil, alignment: .topLeading)
+            Text("EVENT LOG")
+                .frame(maxWidth: .infinity, alignment: .topLeading)
             ScrollView {
-                VStack {
-                    Text(Logger.shared.log)
-                }.frame(maxWidth: .infinity)
+                Text(Logger.shared.log)
+                    .frame(maxWidth: .infinity, alignment: .topLeading)
             }
-            .border(.red, width: 2.0) // for debugging SwiftUI code
         }
-        .frame(width: 500, height: nil, alignment:.leading)
+        .frame(width: 500, alignment:.leading)
         .multilineTextAlignment(.leading)
         .padding()
     }

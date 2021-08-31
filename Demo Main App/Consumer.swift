@@ -6,7 +6,7 @@ class Consumer : UDClientDelegate {
     }
     
     func handleSocketClientMsgDict(
-        _ aDict: [AnyHashable : Any]?,
+        _ aDict: [String : String]?,
         client: UDClient?,
         error: Error?) {
         if let dict = aDict {
