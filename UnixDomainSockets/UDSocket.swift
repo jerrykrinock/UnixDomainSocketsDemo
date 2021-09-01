@@ -7,7 +7,8 @@ class UDSocket : ObservableObject {
     var sockRef: CFSocket?
     var sockUrl: NSURL?
     var sockRLSourceRef: CFRunLoopSource?
-    
+    var socketBufferSize: Int = 0
+
     struct UDSErr: Error {
         enum Kind {
             // Both Client and Server
@@ -38,6 +39,38 @@ class UDSocket : ObservableObject {
         let kind: Kind
     }
 
+    func registerBufferSize(sock: Int32) -> Void {
+        let value_p = UnsafeMutableRawPointer.allocate(
+            byteCount: MemoryLayout<Int32>.size,
+            alignment: MemoryLayout<Int32>.alignment)
+        let sizeVal: Int = 0
+        var sizeValSize = UInt32(MemoryLayout.size(ofValue: sizeVal))
+        getsockopt(
+            sock,
+            SOL_SOCKET,
+            SO_RCVBUF,
+            value_p,
+            &sizeValSize
+        )
+        let socketReceiveBufferSize = Int(value_p.load(as: Int32.self))
+        getsockopt(
+            sock,
+            SOL_SOCKET,
+            SO_SNDBUF,
+            value_p,
+            &sizeValSize
+        )
+        let socketSendBufferSize = Int(value_p.load(as: Int32.self))
+        
+        /* Note: You can also get socketReceiveBufferSize and
+         socketSendBufferSize with a Terminal command:
+         sysctl -a | grep net.local.stream
+         */
+        
+        self.socketBufferSize = min(socketSendBufferSize, socketReceiveBufferSize)
+        Logger.shared.log("Set socketBufferSize to \(self.socketBufferSize) in \(self)")
+    }
+        
     func isSockRefValid() -> Bool {
         if (self.sockRef == nil) {
             return false

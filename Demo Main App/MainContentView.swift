@@ -45,7 +45,7 @@ If you ever want to see the socket status in the system, in Terminal.app enter:
             Button(action: {
                 do {
                     var bigDict: Dictionary<String, String> = Dictionary()
-                    for i in 1...680 {  // 680 is OK, 681 fails
+                    for i in 1...681 {  // 680 is OK, 681 fails
                         bigDict[String(describing:i)] = String(describing:2*i)
                     }
                     try self.client.sendMessageDict(dictionary: bigDict)

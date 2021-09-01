@@ -50,6 +50,9 @@ class UDServer : UDSocket, UDClientDelegate {
         }
         
         let sock = socket( AF_UNIX, SOCK_STREAM, 0 )
+        
+        registerBufferSize(sock: sock)
+
         var context = CFSocketContext(
             version: 0,
             info: unsafeBitCast(self, to: UnsafeMutableRawPointer.self),
@@ -141,6 +144,7 @@ class UDServer : UDSocket, UDClientDelegate {
         objc_sync_enter(self) // Someday, use Swift 5.5 concurrency instead
         if let client = UDClient(socket: handle) {
             client.delegate = self
+            client.registerBufferSize(sock: handle)
 
             if ( client.isSockConnected() ) {
                 self.sockClients.insert(client)
