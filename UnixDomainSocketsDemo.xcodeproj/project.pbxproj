@@ -13,6 +13,10 @@
 		482D463D26D4303E008597FA /* Producer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482D463C26D4303E008597FA /* Producer.swift */; };
 		482D463F26D43054008597FA /* Consumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482D463E26D43054008597FA /* Consumer.swift */; };
 		482D464126D5A69A008597FA /* OtherApper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4806A09326CDF9E7005AEB93 /* OtherApper.swift */; };
+		482D465826E3F36A008597FA /* DemoAppKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482D465726E3F36A008597FA /* DemoAppKeys.swift */; };
+		482D465926E3F36A008597FA /* DemoAppKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482D465726E3F36A008597FA /* DemoAppKeys.swift */; };
+		482D465B26E48A9F008597FA /* NSString+Truncate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482D465A26E48A9F008597FA /* NSString+Truncate.swift */; };
+		482D465C26E48A9F008597FA /* NSString+Truncate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482D465A26E48A9F008597FA /* NSString+Truncate.swift */; };
 		48AAADAD26AE1C96005AB04F /* UDSDMainAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADAC26AE1C96005AB04F /* UDSDMainAppApp.swift */; };
 		48AAADAF26AE1C96005AB04F /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAADAE26AE1C96005AB04F /* MainContentView.swift */; };
 		48AAADB126AE1C97005AB04F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48AAADB026AE1C97005AB04F /* Assets.xcassets */; };
@@ -23,10 +27,10 @@
 		48AAADD226AE1CF9005AB04F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48AAADD126AE1CF9005AB04F /* Preview Assets.xcassets */; };
 		48AAAE0326AE6961005AB04F /* UDSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAE0226AE6961005AB04F /* UDSocket.swift */; };
 		48AAAE0426AE6961005AB04F /* UDSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAE0226AE6961005AB04F /* UDSocket.swift */; };
-		48AAAE0626AE7181005AB04F /* UDClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAE0526AE7181005AB04F /* UDClient.swift */; };
-		48AAAE0726AE7181005AB04F /* UDClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAE0526AE7181005AB04F /* UDClient.swift */; };
-		48AAAE0926AE718A005AB04F /* UDServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAE0826AE7189005AB04F /* UDServer.swift */; };
-		48AAAE0A26AE718A005AB04F /* UDServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAE0826AE7189005AB04F /* UDServer.swift */; };
+		48AAAE0626AE7181005AB04F /* UDSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAE0526AE7181005AB04F /* UDSClient.swift */; };
+		48AAAE0726AE7181005AB04F /* UDSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAE0526AE7181005AB04F /* UDSClient.swift */; };
+		48AAAE0926AE718A005AB04F /* UDSServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAE0826AE7189005AB04F /* UDSServer.swift */; };
+		48AAAE0A26AE718A005AB04F /* UDSServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AAAE0826AE7189005AB04F /* UDSServer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +48,9 @@
 		4806A09626D34788005AEB93 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		482D463C26D4303E008597FA /* Producer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Producer.swift; sourceTree = "<group>"; };
 		482D463E26D43054008597FA /* Consumer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consumer.swift; sourceTree = "<group>"; };
-		482D464026D57633008597FA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		482D464026D57633008597FA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; wrapsLines = 1; };
+		482D465726E3F36A008597FA /* DemoAppKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoAppKeys.swift; sourceTree = "<group>"; };
+		482D465A26E48A9F008597FA /* NSString+Truncate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSString+Truncate.swift"; sourceTree = "<group>"; };
 		48AAADAA26AE1C96005AB04F /* UDSDMainApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDSDMainApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48AAADAC26AE1C96005AB04F /* UDSDMainAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDSDMainAppApp.swift; sourceTree = "<group>"; };
 		48AAADAE26AE1C96005AB04F /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
@@ -56,8 +62,8 @@
 		48AAADCE26AE1CF9005AB04F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48AAADD126AE1CF9005AB04F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		48AAAE0226AE6961005AB04F /* UDSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDSocket.swift; sourceTree = "<group>"; };
-		48AAAE0526AE7181005AB04F /* UDClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDClient.swift; sourceTree = "<group>"; };
-		48AAAE0826AE7189005AB04F /* UDServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDServer.swift; sourceTree = "<group>"; };
+		48AAAE0526AE7181005AB04F /* UDSClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDSClient.swift; sourceTree = "<group>"; };
+		48AAAE0826AE7189005AB04F /* UDSServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDSServer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,11 +88,11 @@
 			isa = PBXGroup;
 			children = (
 				482D464026D57633008597FA /* README.md */,
-				4806A09326CDF9E7005AEB93 /* OtherApper.swift */,
-				4806A09626D34788005AEB93 /* Logger.swift */,
 				48170D9E26A7957300005954 /* UnixDomainSockets */,
 				48AAADAB26AE1C96005AB04F /* Demo Main App */,
 				48AAADC926AE1CF8005AB04F /* Demo Helper App */,
+				482D465626E3F321008597FA /* Demo App Common */,
+				482D465526E3F2F1008597FA /* Demo App Utilities */,
 				48170D9D26A7957300005954 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -104,10 +110,28 @@
 			isa = PBXGroup;
 			children = (
 				48AAAE0226AE6961005AB04F /* UDSocket.swift */,
-				48AAAE0526AE7181005AB04F /* UDClient.swift */,
-				48AAAE0826AE7189005AB04F /* UDServer.swift */,
+				48AAAE0526AE7181005AB04F /* UDSClient.swift */,
+				48AAAE0826AE7189005AB04F /* UDSServer.swift */,
 			);
 			path = UnixDomainSockets;
+			sourceTree = "<group>";
+		};
+		482D465526E3F2F1008597FA /* Demo App Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				482D465A26E48A9F008597FA /* NSString+Truncate.swift */,
+				4806A09326CDF9E7005AEB93 /* OtherApper.swift */,
+				4806A09626D34788005AEB93 /* Logger.swift */,
+			);
+			path = "Demo App Utilities";
+			sourceTree = "<group>";
+		};
+		482D465626E3F321008597FA /* Demo App Common */ = {
+			isa = PBXGroup;
+			children = (
+				482D465726E3F36A008597FA /* DemoAppKeys.swift */,
+			);
+			path = "Demo App Common";
 			sourceTree = "<group>";
 		};
 		48AAADAB26AE1C96005AB04F /* Demo Main App */ = {
@@ -252,10 +276,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				482D463F26D43054008597FA /* Consumer.swift in Sources */,
-				48AAAE0926AE718A005AB04F /* UDServer.swift in Sources */,
+				482D465826E3F36A008597FA /* DemoAppKeys.swift in Sources */,
+				48AAAE0926AE718A005AB04F /* UDSServer.swift in Sources */,
+				482D465B26E48A9F008597FA /* NSString+Truncate.swift in Sources */,
 				48AAADAF26AE1C96005AB04F /* MainContentView.swift in Sources */,
 				48AAADAD26AE1C96005AB04F /* UDSDMainAppApp.swift in Sources */,
-				48AAAE0626AE7181005AB04F /* UDClient.swift in Sources */,
+				48AAAE0626AE7181005AB04F /* UDSClient.swift in Sources */,
 				4806A09526CDFF50005AEB93 /* OtherApper.swift in Sources */,
 				48AAAE0326AE6961005AB04F /* UDSocket.swift in Sources */,
 				4806A09726D34788005AEB93 /* Logger.swift in Sources */,
@@ -266,10 +292,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48AAAE0A26AE718A005AB04F /* UDServer.swift in Sources */,
+				48AAAE0A26AE718A005AB04F /* UDSServer.swift in Sources */,
+				482D465926E3F36A008597FA /* DemoAppKeys.swift in Sources */,
 				48AAADCD26AE1CF8005AB04F /* HelperContentView.swift in Sources */,
+				482D465C26E48A9F008597FA /* NSString+Truncate.swift in Sources */,
 				48AAADCB26AE1CF8005AB04F /* UDSDHelperAppApp.swift in Sources */,
-				48AAAE0726AE7181005AB04F /* UDClient.swift in Sources */,
+				48AAAE0726AE7181005AB04F /* UDSClient.swift in Sources */,
 				4806A09826D34788005AEB93 /* Logger.swift in Sources */,
 				482D464126D5A69A008597FA /* OtherApper.swift in Sources */,
 				482D463D26D4303E008597FA /* Producer.swift in Sources */,

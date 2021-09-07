@@ -2,7 +2,7 @@ import SwiftUI
 
 
 struct MainAppContentView: View {
-    var client: UDClient
+    var client: UDSClient
     @ObservedObject var logger: Logger = Logger.shared
 
     var body: some View {
@@ -12,59 +12,70 @@ To run this demo, click the 3 buttons in order.
 
 1.  Launch Helper App.  The Helper App will start its internal server upon launch.
 2.  Start Internal Client.  (The Client is an object in this here Main app.)  It will connect to the sersver in the Helper.
-3.  Time of Day.  This button will cause the Client to ask the helper/server for the time of day.  The server will respond.
-3.  Big Dictionary.  This button will send a big dictionary to the server.  The server will echo it back.
+3.  Small Job.  This button will cause the Client to ask the helper/server for the time of day.  The server's response will be printed to the Event Log.
+3.  Big Job.  This button will send an array of several thousand numbers to the server.  The server will send back an array weach number multiplied by 2, and a truncated version of this response will be displayed in the Event Log.
 
 If you ever want to see the socket status in the system, in Terminal.app enter:
     netstat -f unix | grep -e UDSDService -e Recv-Q
 (The last -e in that command is to print the column headings.)
 """)
-                .frame(minWidth: 500.0, idealWidth: 500.0, maxWidth: 500.0, minHeight: 185.0, idealHeight: nil, maxHeight: .infinity, alignment: .leading)
-            Spacer(minLength: 20)
+                .frame(minWidth: 500.0, idealWidth: 500.0, maxWidth: 500.0, minHeight: 230.0, idealHeight: nil, maxHeight: .infinity, alignment: .leading)
+                .multilineTextAlignment(.leading)
+            /* Is it really this hard for a Text to expand to fit text?
+             https://lostmoa.com/blog/DynamicHeightForTextFieldInSwiftUI/ */
+            
             Button(action: {
                 launchHelper()
             }) {
                 Text("Launch Helper App")
             }
             Button(action: {
-                self.client.start()
+                do {
+                    try self.client.start()
+                    Logger.shared.log("Started client with bufferSize \(client.bufferSize) bytes")
+                } catch {
+                    Logger.shared.logError(error)
+                }
             }) {
                 Text("Start Internal Client")
             }
             Button(action: {
                 do {
-                    try self.client.sendMessageDict(dictionary: ["Question from client": "What time is it?"])
+                    try self.client.sendMessageDict([
+                        JobTalk.Keys.command : JobTalk.Commands.whatTimeIsIt
+                    ])
                 } catch {
-                    Logger.shared.logError(UDClient.UDSErr(kind: .nested(
+                    Logger.shared.logError(UDSClient.UDSErr(kind: .nested(
                         identifier: "sendingQuestion",
                         underlying: error)))
                 }
             }) {
-                Text("Time of Day")
+                Text("Small Job")
             }
             Button(action: {
                 do {
-                    var bigDict: Dictionary<String, String> = Dictionary()
-                    for i in 1...681 {  // 680 is OK, 681 fails
-                        bigDict[String(describing:i)] = String(describing:2*i)
+                    var numbers: Array<Int> = Array()
+                    for i in 1...6850 {
+                        numbers.append(i)
                     }
-                    try self.client.sendMessageDict(dictionary: bigDict)
+                    try self.client.sendMessageDict([
+                        JobTalk.Keys.command : JobTalk.Commands.multiplyEachElementBy2,
+                        JobTalk.Keys.jobDataIn : numbers
+                    ])
                 } catch {
-                    Logger.shared.logError(UDClient.UDSErr(kind: .nested(
+                    Logger.shared.logError(UDSClient.UDSErr(kind: .nested(
                         identifier: "sendingBigDict",
                         underlying: error)))
                 }
             }) {
-                Text("Big Dictionary")
+                Text("Big Job")
             }
-
-            Spacer(minLength: 20)
 
             Text("EVENT LOG")
                 .frame(maxWidth: .infinity, alignment: .topLeading)
             ScrollView {
                 Text(Logger.shared.log)
-                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                    .frame(maxWidth: .infinity, minHeight: 10.0, alignment: .topLeading)
             }
         }
         .frame(width: 500, alignment:.leading)

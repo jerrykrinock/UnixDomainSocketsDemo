@@ -1,37 +1,47 @@
 import Foundation
 
+/**  This callback is only received when a client requests to open a
+ connection; that is, only once in the life cycle of a client.  Later, when
+ this client requests actual service, the *connected client* object in the
+ server will receive the callback. */
 func SocketServerCallback(
     _ sock: CFSocket?,
     _ type: CFSocketCallBackType,
     _ address: CFData?,
     _ data: UnsafeRawPointer?,
     _ info: UnsafeMutableRawPointer?) {
-    
     if let info = info {
-        let server = unsafeBitCast(info, to:UDServer.self)
-        Logger.shared.log("Server received socket callback")
+        let server = unsafeBitCast(info, to:UDSServer.self)
         
         if type == .acceptCallBack {
-            Logger.shared.log("Type is .acceptCallBack")
             if let data = data {
                 /* The CFSocketNativeHandle type is an int, which is an Int32
                  on a 64-bit macOS.  For further reading:
                  https://www.wwdcnotes.com/notes/wwdc20/10167/ */
                 let handle = CFSocketNativeHandle(data.load(as: Int32.self))
                 server.addConnectedClient(handle: handle)
+            } else {
+                /* This never happens when running demo. */
             }
+        } else {
+            /* This never happens when running demo. */
         }
+    } else {
+        /* This never happens when running demo. */
     }
-    Logger.shared.log("Server received socket callback but no server")
 }
 
 
-protocol UDServerDelegate: AnyObject {
-    func handleSocketServerStopped(_ server: UDServer?)
-    func handleSocketServerMsgDict(_ aDict: [String : String]?, from client: UDClient?, error: Error?)
+protocol UDSServerDelegate: AnyObject {
+    func handleSocketServerStopped(_ server: UDSServer?)
+    func handleSocketServerMsgDict(
+        _ aDict: [AnyHashable : AnyHashable]?,
+        from client: UDSClient?,
+        error: Error?)
+    func handleConnectionError(_ error: Error?)
 }
 
-class UDServer : UDSocket, UDClientDelegate {
+class UDSServer : UDSocket, UDSClientDelegate {
     enum Status {
         case unknown
         case running
@@ -40,9 +50,9 @@ class UDServer : UDSocket, UDClientDelegate {
         case stopping
     }
     
-    var sockStatus: UDServer.Status = .unknown
-    var sockClients = Set<UDClient>() // empty set
-    var delegate: UDServerDelegate? = nil
+    var sockStatus: UDSServer.Status = .unknown
+    @Published var sockClients = Set<UDSClient>() // empty set
+    var delegate: UDSServerDelegate? = nil
 
     func socketServerCreate() throws -> Void {
         if (self.sockRef != nil) {
@@ -51,7 +61,7 @@ class UDServer : UDSocket, UDClientDelegate {
         
         let sock = socket( AF_UNIX, SOCK_STREAM, 0 )
         
-        registerBufferSize(sock: sock)
+        establishBufferSize(sock: sock)
 
         var context = CFSocketContext(
             version: 0,
@@ -131,7 +141,7 @@ class UDServer : UDSocket, UDClientDelegate {
         }
     }
     
-    func disconnectClient(_ client: UDClient?) -> Void {
+    func disconnectClient(_ client: UDSClient?) -> Void {
         objc_sync_enter(self) // Someday, use Swift 5.5 concurrency instead
         if let client = client {
             self.sockClients.remove(client)
@@ -142,25 +152,34 @@ class UDServer : UDSocket, UDClientDelegate {
     
     func addConnectedClient(handle: CFSocketNativeHandle) -> Void {
         objc_sync_enter(self) // Someday, use Swift 5.5 concurrency instead
-        if let client = UDClient(socket: handle) {
-            client.delegate = self
-            client.registerBufferSize(sock: handle)
-
-            if ( client.isSockConnected() ) {
-                self.sockClients.insert(client)
-                Logger.shared.log("Added client \(client) Now have \(self.sockClients.count) clients")
+        do {
+            if let client = try UDSClient(handle: handle) {
+                client.delegate = self
+                client.establishBufferSize(sock: handle)
+                
+                if ( client.isSockConnected() ) {
+                    self.sockClients.insert(client)
+                }
             }
+        } catch {
+            self.delegate?.handleConnectionError(error)
         }
         objc_sync_exit(self) // Someday, use Swift 5.5 concurrency instead
     }
     
-    func handleSocketClientDisconnect(_ client: UDClient?) {
+    func handleSocketClientDisconnect(_ client: UDSClient?) {
         self.disconnectClient(client)
     }
     
+    func handleSocketServerDisconnect(_ client: UDSClient?) {
+        /* Just needed to conform to protocol.  This may happen if the
+         client process terminates.  It never happens when running the demo
+         app. */
+    }
+    
     func handleSocketClientMsgDict(
-        _ aDict: [String : String]?,
-        client: UDClient?,
+        _ aDict: [AnyHashable : AnyHashable]?,
+        client: UDSClient?,
         error: Error?
     ) {
         self.delegate?.handleSocketServerMsgDict(
@@ -170,10 +189,8 @@ class UDServer : UDSocket, UDClientDelegate {
         )
     }
 
-    func start() -> Void {
-        Logger.shared.log("Attempting to start server")
+    func start() throws -> Void {
         if (self.sockStatus == .running) {
-            Logger.shared.log("Ooops, server is already started and running")
             return
         }
         self.sockStatus = .starting
@@ -181,20 +198,18 @@ class UDServer : UDSocket, UDClientDelegate {
         do {
             try self.socketServerCreate()
         } catch {
-            Logger.shared.logError(Self.UDSErr(kind: .nested(
+            throw Self.UDSErr(kind: .nested(
                 identifier: "strtSrvr-create",
-                underlying: error)))
+                underlying: error))
         }
-        Logger.shared.log("Created server socket")
-
+        
         do {
             try self.socketServerBind()
         } catch {
-            Logger.shared.logError(Self.UDSErr(kind: .nested(
+            throw Self.UDSErr(kind: .nested(
                 identifier: "strtSrvr-bind",
-                underlying: error)))
+                underlying: error))
         }
-        Logger.shared.log("Bound server socket")
 
         let sourceRef = CFSocketCreateRunLoopSource(
             kCFAllocatorDefault,
@@ -208,7 +223,6 @@ class UDServer : UDSocket, UDClientDelegate {
         )
         self.sockRLSourceRef = sourceRef
         self.sockStatus = .running
-        Logger.shared.log("Started server run loop")
     }
 
     func stop() -> Void {
@@ -239,7 +253,7 @@ class UDServer : UDSocket, UDClientDelegate {
         
         self.sockUrl = socketUrl
         self.sockStatus = .stopped
-        self.sockClients = Set<UDClient>() // empty set
+        self.sockClients = Set<UDSClient>() // empty set
     }
     
     deinit {

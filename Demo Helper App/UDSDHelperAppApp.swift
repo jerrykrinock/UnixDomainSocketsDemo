@@ -2,14 +2,21 @@ import SwiftUI
 
 @main
 struct UDSDHelperApp: App {
-    var server: UDServer? = nil
+    var server: UDSServer? = nil
     var producer: Producer? = nil
 
     init() {
-        self.server = UDServer(socketUrl: UDSocket.serviceUrl())
-        self.server?.start()
-        self.producer = Producer()
-        self.server?.delegate = producer
+        self.server = UDSServer(socketUrl: UDSocket.serviceUrl())
+        do {
+            try self.server?.start()
+        } catch {
+            Logger.shared.logError(error)
+        }
+        if let server = self.server {
+            Logger.shared.log("Started server with bufferSize \(server.bufferSize) bytes")
+            self.producer = Producer()
+            server.delegate = producer
+        }
     }
 
     var body: some Scene {

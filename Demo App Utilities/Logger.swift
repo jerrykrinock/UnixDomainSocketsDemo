@@ -7,7 +7,7 @@ class Logger : ObservableObject {
     static let shared = Logger()
     
     init() {
-        self.log("¡Hola Mundo!")
+        self.log("Greetings from a new Logger")
     }
 
     func log(_ newEntry: String) {
@@ -16,9 +16,14 @@ class Logger : ObservableObject {
         self.log = self.log + "\n" + dateFormatter.string(from: Date()) + newEntry
     }
     
-    func logError(_ error: UDSocket.UDSErr) {
-        self.log("ERROR: " + String(describing: error.kind) + "\n"
-        + "    " +  error.localizedDescription)
+    func logError(_ error: Error) {
+        if let error = error as? UDSocket.UDSErr {
+            self.log("ERROR: " + String(describing: error.kind) + "\n"
+            + "    " +  error.localizedDescription)
+        } else {
+            self.log("FOREIGN ERROR: \(String(describing: error))")
+        }
+
     }
 
 }

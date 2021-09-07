@@ -1,13 +1,13 @@
 import Foundation
 
-/* This is the superclass for UDClient and UDServer. */
+/* This is the superclass for UDSClient and UDSServer. */
 class UDSocket : ObservableObject {
     var sockRefValid = false
     var sockConnected = false
     var sockRef: CFSocket?
     var sockUrl: NSURL?
     var sockRLSourceRef: CFRunLoopSource?
-    var socketBufferSize: Int = 0
+    var bufferSize: Int = 0
 
     struct UDSErr: Error {
         enum Kind {
@@ -39,7 +39,7 @@ class UDSocket : ObservableObject {
         let kind: Kind
     }
 
-    func registerBufferSize(sock: Int32) -> Void {
+    func establishBufferSize(sock: Int32) -> Void {
         let value_p = UnsafeMutableRawPointer.allocate(
             byteCount: MemoryLayout<Int32>.size,
             alignment: MemoryLayout<Int32>.alignment)
@@ -67,8 +67,7 @@ class UDSocket : ObservableObject {
          sysctl -a | grep net.local.stream
          */
         
-        self.socketBufferSize = min(socketSendBufferSize, socketReceiveBufferSize)
-        Logger.shared.log("Set socketBufferSize to \(self.socketBufferSize) in \(self)")
+        self.bufferSize = min(socketSendBufferSize, socketReceiveBufferSize)
     }
         
     func isSockRefValid() -> Bool {
@@ -84,7 +83,6 @@ class UDSocket : ObservableObject {
 
         var path = [Int8](repeating: 0, count: Int(104))
         if let url = self.sockUrl {
-            Logger.shared.log("Creating socket with \(url)")
             if (url.getFileSystemRepresentation(&path, maxLength: Int(104))) {
                 /* Swift imports fixed-size C arrays as tuples !!
                  https://oleb.net/blog/2017/12/swift-imports-fixed-size-c-arrays-as-tuples/ */

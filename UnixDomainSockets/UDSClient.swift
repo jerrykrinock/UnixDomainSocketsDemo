@@ -15,10 +15,8 @@ func SocketClientCallback(
     _ address: CFData?,
     _ data: UnsafeRawPointer?,
     _ info: UnsafeMutableRawPointer?) {
-
-    Logger.shared.log("Client has received callback")
     if let info = info {
-        let client = unsafeBitCast(info, to:UDClient.self)
+        let client = unsafeBitCast(info, to:UDSClient.self)
         
         /* From documentation of CFClientCallback:
          `data` is data appropriate for the callback type.
@@ -33,29 +31,31 @@ func SocketClientCallback(
                 let cfData = unsafeBitCast(data, to: CFData.self)
                 let nsData = cfData as NSData
                 let swiftData = nsData as Data
-                Logger.shared.log("Client callback has received a .dataCallback of \(swiftData.count) bytes")
-                if (swiftData.count > 0) {
-                    client.messageReceived(data: swiftData)
-                } else {
-                    client.stop()
-                }
+                client.messageReceived(data: swiftData)
             case .connectCallBack:
-                Logger.shared.log("Client callback has received a .connectCallback")
+                /* I have never seen this occur.  It does not occur when
+                 running the demo app. */
+                break
             case .acceptCallBack:
-                Logger.shared.log("Client callback has received a .acceptCallback")
+                /* I have never seen this occur.  It does not occur when
+                 running the demo app. */
+                break
             default:
-                Logger.shared.log("Client callback has received a unknown callback")
+                /* I have never seen this occur.  It does not occur when
+                 running the demo app. */
+                break
             }
         }
     }
 }
 
-protocol UDClientDelegate: AnyObject {
-    func handleSocketClientDisconnect(_ client: UDClient?)
-    func handleSocketClientMsgDict(_ aDict: [String : String]?, client: UDClient?, error: Error?)
+protocol UDSClientDelegate: AnyObject {
+    func handleSocketClientDisconnect(_ client: UDSClient?)
+    func handleSocketServerDisconnect(_ client: UDSClient?)
+    func handleSocketClientMsgDict(_ aDict: [AnyHashable : AnyHashable]?, client: UDSClient?, error: Error?)
 }
 
-class UDClient : UDSocket, Hashable {
+class UDSClient : UDSocket, Hashable {
     enum Status {
         case unknown
         case linked
@@ -67,8 +67,52 @@ class UDClient : UDSocket, Hashable {
     private var sockStatus: Status?
     private var dataReceiving: Data = Data()
     var timeout: CFTimeInterval = 5.0
-    var delegate: UDClientDelegate?
-    var junk: Any? = nil
+    var delegate: UDSClientDelegate?
+    
+    /**  Code in the client process should call this initializer to create
+     a client object.
+     - parameter socketUrl: The URL of the target socket.
+     */
+    init(socketUrl: NSURL) {
+        super.init()
+        self.sockUrl = socketUrl
+        self.sockStatus = .disconnected
+    }
+    
+    /**  Code in the server process should call this initializer to create
+     a "connected client" object when it receives the first job request from
+     a client.
+     - parameter handle: The handle (actually, an integer) identifying the
+     client which is requesting a connection.
+     */
+    init?(handle: CFSocketNativeHandle) throws {
+        super.init()
+        self.sockStatus = .linking
+
+        do {
+            try socketClientCreate(sock: handle)
+            let sourceRef = CFSocketCreateRunLoopSource(
+                kCFAllocatorDefault,
+                sockRef,
+                CFIndex(0))
+            CFRunLoopAddSource(
+                CFRunLoopGetCurrent(),
+                sourceRef,
+                CFRunLoopMode.commonModes
+            )
+            
+            self.sockRLSourceRef = sourceRef
+            
+            sockStatus = .linked
+        } catch {
+            self.stop()
+            throw UDSClient.UDSErr.init(kind: .nested(identifier: "UDSClient.init(handle:)", underlying: error))
+        }
+    }
+    
+    deinit {
+        self.stop()
+    }
     
     func socketClientCreate(sock: CFSocketNativeHandle) throws -> Void {
         
@@ -106,7 +150,6 @@ class UDClient : UDSocket, Hashable {
             socklen
         )
         
-        Logger.shared.log("Did create Client without throwing any error")
         self.sockRef = refSock;
     }
     
@@ -133,47 +176,53 @@ class UDClient : UDSocket, Hashable {
         } else {
             throw Self.UDSErr(kind: .cannotConnectToNilAddress)
         }
-        Logger.shared.log("Did connect Client without throwing any error")
     }
     
     func messageReceived(data:Data) -> Void {
-        Logger.shared.log("Client has received message data: \(data)")
-        let moreChunksHeaderSize = Int(MemoryLayout<Int>.size)
-        let moreChunksData = data.subdata(in: 0..<moreChunksHeaderSize)
-        let moreChunksValue = moreChunksData.withUnsafeBytes {
-            $0.load(as: Int.self)
-        }
-        Logger.shared.log("received moreChunksValue = \(moreChunksValue)")
-        let payloadData = data.subdata(in: moreChunksHeaderSize..<data.count)
-        Logger.shared.log("received payload data of \(payloadData.count) bytes")
+        if (data.count > 0) {
+            /* For explanation, see Note: Data Transmission Protocol */
+            let moreChunksHeaderSize = Int(MemoryLayout<Int>.size)
+            let moreChunksData = data.subdata(in: 0..<moreChunksHeaderSize)
+            let moreChunksValue = moreChunksData.withUnsafeBytes {
+                $0.load(as: Int.self)
+            }
+            let payloadData = data.subdata(in: moreChunksHeaderSize..<data.count)
 
-        self.dataReceiving.append(payloadData)
-        if (moreChunksValue == 0) {
-            do {
-                let jsonObject = try JSONSerialization.jsonObject(with: self.dataReceiving,
-                                                                  options:JSONSerialization.ReadingOptions.init(rawValue: 0))
-                // Prepare for next message…
-                self.dataReceiving.removeAll()
-                
-                if let dict = jsonObject as? Dictionary<String, String> {
-                    self.delegate?.handleSocketClientMsgDict(dict, client: self, error: nil)
-                } else {
-                    let className = (jsonObject as AnyObject).className ?? "not an object"
+            self.dataReceiving.append(payloadData)
+            if (moreChunksValue == 0) {
+                do {
+                    let jsonObject = try JSONSerialization.jsonObject(with: self.dataReceiving,
+                                                                      options:JSONSerialization.ReadingOptions.init(rawValue: 0))
+                    // Prepare for next message…
+                    self.dataReceiving.removeAll()
+                    
+                    if let dict = jsonObject as? Dictionary<AnyHashable, AnyHashable> {
+                        self.delegate?.handleSocketClientMsgDict(dict, client: self, error: nil)
+                    } else {
+                        let className = (jsonObject as AnyObject).className ?? "not an object"
+                        self.delegate?.handleSocketClientMsgDict(
+                            nil,
+                            client: self,
+                            error: Self.UDSErr(kind:.receivedNonDictionary(typeReceived: className)))
+                    }
+                } catch {
                     self.delegate?.handleSocketClientMsgDict(
                         nil,
                         client: self,
-                        error: Self.UDSErr(kind:.receivedNonDictionary(typeReceived: className)))
+                        error: Self.UDSErr(kind: .nested(
+                            identifier: #function,
+                            underlying: error)
+                                          ))
                 }
-            } catch {
-                self.delegate?.handleSocketClientMsgDict(
-                    nil,
-                    client: self,
-                    error: Self.UDSErr(kind: .nested(
-                        identifier: #function,
-                        underlying: error)
-                                      ))
             }
+        } else {
+            /* Oddly, I think, when the server stops or its host
+             process terminates, the client receives a .dataCallback
+             with 0 bytes of data; no other callback*/
+            self.delegate?.handleSocketServerDisconnect(self)
+            self.stop()
         }
+
     }
     
     private func chunksRequired(payloadSize: Int, payloadLimit: Int) -> Int {
@@ -187,27 +236,21 @@ class UDClient : UDSocket, Hashable {
     
     func sendMessageData(data:Data) throws -> Void {
         if ( self.isSockConnected() ) {
-            let payloadLimit = self.socketBufferSize - Int(MemoryLayout<Int>.size)
-            Logger.shared.log("Got socketBufferSize = \(self.socketBufferSize) in \(self)")
+            /* For explanation, see Note: Data Transmission Protocol */
+            let payloadLimit = self.bufferSize - Int(MemoryLayout<Int>.size)
             var moreChunks = chunksRequired(payloadSize: data.count, payloadLimit: payloadLimit)
             var offset = Int(0)
-            Logger.shared.log("BEGIN sending \(data.count) payload bytes")
             repeat {
-                let bytesInThisChunk = min(payloadLimit, data.count - offset)
-                Logger.shared.log("BEFOR  offset=\(offset)  moreChunks=\(moreChunks)")
+                let payloadBytesInThisChunk = min(payloadLimit, data.count - offset)
                 moreChunks -= 1
-                Logger.shared.log("sending a chunk with moreChunks = \(moreChunks)")
                 var dataOut = Data(bytes: &moreChunks,
-                                     count: MemoryLayout.size(ofValue: moreChunks))
+                                   count: MemoryLayout.size(ofValue: moreChunks))
                 dataOut.append(
                     data: data,
                     offset: offset,
-                    size: bytesInThisChunk
+                    size: payloadBytesInThisChunk
                 )
-                offset += bytesInThisChunk
-                Logger.shared.log("AFTER  offset=\(offset)  moreChunks=\(moreChunks)")
-
-                /*SSYDBL*/ print("Sending chunk of \(dataOut.count) bytes")
+                offset += payloadBytesInThisChunk
                 let socketErr = CFSocketSendData(self.sockRef,
                                                  nil,
                                                  dataOut as CFData,
@@ -215,30 +258,24 @@ class UDClient : UDSocket, Hashable {
                 switch socketErr {
                 case .timeout:
                     let error = Self.UDSErr(kind: .sendDataTimeout)
-                    Logger.shared.logError(error)
                     throw error
                 case .error:
                     let error = Self.UDSErr(kind: .sendDataUnspecifiedError)
-                    Logger.shared.logError(error)
                     throw error
                 case .success:
-                    Logger.shared.log("Send data result: .success")
                     break // do nothing
                 @unknown default:
                     let error = Self.UDSErr(kind: .sendDataKnownUnknownError)
-                    Logger.shared.logError(error)
                     throw error
                 }
             } while (moreChunks > 0)
-            Logger.shared.log("DONE sending \(data.count) payload bytes")
         } else {
             let error = Self.UDSErr(kind: .socketNotConnected)
-            Logger.shared.logError(error)
             throw error
         }
     }
     
-    func sendMessageDict(dictionary:Dictionary<String, String>) throws -> Void {
+    func sendMessageDict(_ dictionary: Dictionary<AnyHashable, AnyHashable>) throws -> Void {
         do {
             let data = try JSONSerialization.data(
                 withJSONObject: dictionary,
@@ -249,12 +286,11 @@ class UDClient : UDSocket, Hashable {
             let error = Self.UDSErr(kind: .nested(
                 identifier: #function,
                 underlying: error))
-            Logger.shared.logError(error)
             throw error
         }
     }
     
-    func start() -> Void {
+    func start() throws -> Void {
         if (self.sockStatus == .linked) {
             return
         }
@@ -264,32 +300,29 @@ class UDClient : UDSocket, Hashable {
         
         if (sock == 0) {
             self.stop()
-            Logger.shared.logError(Self.UDSErr(kind: .systemFailedToCreateSocket))
-            return
+            throw Self.UDSErr(kind: .systemFailedToCreateSocket)
         }
         
-        registerBufferSize(sock: sock)
+        establishBufferSize(sock: sock)
 
         do {
             try self.socketClientCreate(sock: sock)
         } catch {
             self.stop()
-            Logger.shared.logError(Self.UDSErr(kind: .nested(
+            throw Self.UDSErr(kind: .nested(
                 identifier: "startCl1",
                 underlying: error
-            )))
-            return
+            ))
         }
         
         do {
             try self.socketClientConnect()
         } catch {
             self.stop()
-            Logger.shared.logError(Self.UDSErr(kind: .nested(
+            throw Self.UDSErr(kind: .nested(
                 identifier: "startCl2",
                 underlying: error
-            )))
-            return
+            ))
         }
         
         let sourceRef = CFSocketCreateRunLoopSource(
@@ -328,49 +361,26 @@ class UDClient : UDSocket, Hashable {
         return (self.sockStatus == .linked) && self.isSockRefValid()
     }
     
-    init(socketUrl: NSURL) {
-        super.init()
-        self.sockUrl = socketUrl
-        self.sockStatus = .disconnected
-    }
-    
-    init?(socket handle: CFSocketNativeHandle) {
-        super.init()
-        self.sockStatus = .linking
-
-        do {
-            try socketClientCreate(sock: handle)
-            let sourceRef = CFSocketCreateRunLoopSource(
-                kCFAllocatorDefault,
-                sockRef,
-                CFIndex(0))
-            CFRunLoopAddSource(
-                CFRunLoopGetCurrent(),
-                sourceRef,
-                CFRunLoopMode.commonModes
-            )
-            
-            self.sockRLSourceRef = sourceRef
-            
-            sockStatus = .linked
-        } catch {
-            self.stop()
-            Logger.shared.log("Could not create socket \(error)")
-        }
-    }
-    
-    deinit {
-        self.stop()
-    }
-    
     // MARK: conform to Hashable
     func hash(into hasher: inout Hasher) {
         hasher.combine(ObjectIdentifier(self))
     }
 
     // MARK: conform to Equatable
-    static func == (lhs: UDClient, rhs: UDClient) -> Bool {
+    static func == (lhs: UDSClient, rhs: UDSClient) -> Bool {
         return lhs === rhs
     }
     
 }
+
+/* Note: Data Transmission Protocol
+ 
+ The size of a data message passed via Unix Domain Sockets is limited to the
+ buffer size of that socket.  On my M1 Mac running macOS 10.12 beta, the
+ default size is 8192 bytes.  To allow transmission of larger size data, in
+ UDSClient.sendMessageData(data:), we partition the data into chunks  of
+ appropriate size, each chunk beginning with an 8 byte header whose Int
+ value indicates how many chunks remain after the current chunks (moreChunks).
+ The receiver (in UDSClient.messageReceived(data:)) appends data into a mutable
+ Data property (UDSClient.dataReceiving) until it receives a chunk whose
+ moreChunks header value is 0. */

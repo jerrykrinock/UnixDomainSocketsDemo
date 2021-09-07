@@ -2,14 +2,16 @@ import SwiftUI
 
 
 struct HelperAppContentView: View {
-    var server: UDServer
+    @ObservedObject var server: UDSServer
     @ObservedObject var logger: Logger = Logger.shared
 
     var body: some View {
         VStack {
-            Text("I don't have any buttons because in a real product I shall probably be a LSUIElement (faceless background app).")
+            Text("No buttons because in a real product this shall probably be a LSUIElement (faceless background app).")
                 .frame(minWidth: 500.0, idealWidth: 500.0, maxWidth: 500.0, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .leading)
-            Spacer(minLength: 20)
+            Spacer(minLength: 10)
+            Text("Internal now server has \(server.sockClients.count) connected clients.")
+            Spacer(minLength: 10)
 
             Text("EVENT LOG")
                 .frame(maxWidth: .infinity, alignment: .topLeading)
