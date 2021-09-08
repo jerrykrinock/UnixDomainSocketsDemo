@@ -24,6 +24,7 @@ struct JobTalk {
     enum Commands {
         static let whatTimeIsIt = "whatTimeIsIt"
         static let multiplyEachElementBy2 = "multiplyEachElementBy2"
+        static let getSafariBookmarks = "getSafariBookmarks"
         static let unknownCommand = "unknownCommand"
     }
 }

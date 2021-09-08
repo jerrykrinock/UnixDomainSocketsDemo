@@ -15,16 +15,16 @@ class Consumer : UDSClientDelegate {
         error: Error?) {
         if let dict = aDict {
             let wholeString = String(describing: dict)
-            if let truncatedString = wholeString.stringByTruncatingMiddle(toLength: 180, wholeWords: true) {
+            if let truncatedString = wholeString.stringByTruncatingMiddle(toLength: 300, wholeWords: false) {
                 var truncationMsg = ""
                 if (wholeString.count > truncatedString.count) {
                     truncationMsg = "(showing truncated result, \(truncatedString.count)/\(wholeString.count) chars) "
                 }
-                Logger.shared.log("Got answer: \(truncationMsg)\((truncatedString))")
+                Logger.shared.log("Output from server: \(truncationMsg) \(truncatedString)")
             }
         }
         if let error = error {
-            Logger.shared.log("Got error: \(error)")
+            Logger.shared.log("Error from server: \(error)")
         }
     }
     
