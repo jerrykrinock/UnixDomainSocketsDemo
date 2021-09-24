@@ -145,7 +145,6 @@ class UDSServer : UDSocket, UDSClientDelegate {
         objc_sync_enter(self) // Someday, use Swift 5.5 concurrency instead
         if let client = client {
             self.sockClients.remove(client)
-            client.stop()
         }
         objc_sync_exit(self) // Someday, use Swift 5.5 concurrency instead
     }
