@@ -14,6 +14,7 @@ class UDSocket : ObservableObject {
             // Both Client and Server
             case systemFailedToCreateSocket
             case cannotConnectToNilSocket
+            case cannotAccessAppSupportDir
             case cannotConnectToNilAddress
             case nested(identifier: String, underlying: Error)
             
@@ -210,10 +211,36 @@ class UDSocket : ObservableObject {
     }
     
     /* A single Unix Domain Socket provides two way communication.  So we
-     define only one URL. */
+     define only one URL for both UDSClient and UDSServer. */
     static func serviceUrl() -> NSURL {
-        var url = NSURL.init(fileURLWithPath:NSHomeDirectory())
-        url = url.appendingPathComponent("UDSDService.socket")! as NSURL
-        return url
+        let urls = FileManager.default.urls(
+            for: .applicationSupportDirectory,
+            in: .userDomainMask)
+        let url = (urls.count > 0) ? urls[0] : nil
+        var serviceUrl : NSURL
+        if let url = url {
+            let url = url.appendingPathComponent("UnixDomainSocketsDemo")
+            if (!FileManager.default.fileExists(atPath: url.path)) {
+                do {
+                    try FileManager.default.createDirectory(at: url,
+                                                            withIntermediateDirectories: true,
+                                                            attributes: nil)
+                } catch {
+                    Logger.shared.logError(UDSClient.UDSErr(kind: .nested(
+                        identifier: "socketPathError",
+                        underlying: error)))
+                }
+            }
+            
+            serviceUrl = url.appendingPathComponent("UDSDService.socket") as NSURL
+            Logger.shared.log("Created path for socket: " + (serviceUrl.path ?? "ERROR_NO_PATH"))
+        } else {
+            serviceUrl = NSURL(fileURLWithPath: "/ThisProbablyWontWork")
+            Logger.shared.logError(UDSocket.UDSErr(kind: .cannotAccessAppSupportDir))
+        }
+        
+        
+        
+        return serviceUrl
     }
 }
